@@ -1,0 +1,15 @@
+<%= render "shared/header" %>
+<div class="user-show">
+  <div class="item-box">
+<p><%= @user.nickname %></p>
+<p><%= @user.email %></p>
+
+<h2 class="name"><%= @user.nickname %>  のねこ様</h2>
+<ul>
+  <% @cats.each do |cat| %>
+    <li>
+      名前: <%= cat.name %>, 年齢: <%= cat.age_id %>歳
+  <% end %>
+</ul>
+</div>
+<%= link_to "猫を登録する", new_user_cat_path(@user) %>

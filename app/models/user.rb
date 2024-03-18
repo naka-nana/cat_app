@@ -1,17 +1,35 @@
 class User < ApplicationRecord
+  has_many :cats, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
  
   
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
-  validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'is invalid. Include both letters and numbers' }
-  validates :nickname, presence: true
-  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid' }
-  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid' }
-  validates :last_name_kana, presence: true, format: { with: /\A[\p{katakana}ー－]+\z/, message: 'is must be Katakana' }
-  validates :first_name_kana, presence: true, format: { with: /\A[\p{katakana}ー－]+\z/, message: 'is must be Katakana' }
-  validates :birth_date, presence: true
-  validates :prefecture_id, numericality: { other_than: 1 }
+  validate :password_complexity
+
+  # 全ての属性に共通するpresence: trueをまとめる
+  with_options presence: true do
+    validates :nickname, length: { maximum: 6 }
+    validates :birth_date
+    # 全角文字のバリデーションをまとめる
+    with_options format: { with: /\A[ぁ-んァ-ン一-龥々]+\z/ } do
+      validates :last_name
+      validates :first_name
+    end
+    # カタカナのバリデーションをまとめる
+    with_options format: { with: /\A[ァ-ヶー－]+\z/ } do
+      validates :last_name_kana
+      validates :first_name_kana
+    end
+  end
+
+  # パスワードの複雑さをチェックするカスタムバリデーション
+  def password_complexity
+    # パスワードが空、または半角英数字混合であればOK
+    return if password.blank? || password =~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
+  
+    errors.add(:password, 'is invalid. Include both letters and numbers')
+  end
 end
+

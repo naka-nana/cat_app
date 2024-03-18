@@ -1,0 +1,26 @@
+<%= render "shared/header" %>
+<div class='main'>
+  <div class='title-contents'>
+    <h2 class='service-title'>
+      おねこ様と
+    </h2>
+    <p class='service-explain'>
+      ステキなおねこライフを
+    </p>
+    <p class='service-explain'>
+      一緒に作りましょう！
+    </p>
+<div class="contents row">
+  <% @posts.each do |post| %>
+    <div class="content_post" style="background-image: url(<%= url_for(post.media_attachment) %>);">
+      <p><%= post.text %></p>
+      <span class="name">
+        <%= post.name %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to new_post_path, data: { turbo: false },class: 'purchase-btn' do %>
+  <span class='purchase-btn-text'>投稿する</span>
+<% end %>

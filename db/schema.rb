@@ -10,7 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_05_082215) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_11_065509) do
+  create_table "cats", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.integer "age_id", null: false
+    t.date "birthday", null: false
+    t.integer "breed_id", null: false
+    t.integer "color_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cats_on_user_id"
+  end
+
+  create_table "posts", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "cat_id", null: false
+    t.string "title", null: false
+    t.text "text", null: false
+    t.string "media_url", null: false
+    t.string "media_type", null: false
+    t.text "description"
+    t.string "sharedWith", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_posts_on_cat_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -30,4 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_05_082215) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cats", "users"
+  add_foreign_key "posts", "cats"
+  add_foreign_key "posts", "users"
 end

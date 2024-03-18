@@ -1,0 +1,19 @@
+
+<%= form_for([@user, @cat]) do |f| %>
+  <%= f.label :name, "名前" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :age_id, "年齢" %>
+  <%= f.number_field :age_id %>
+
+  <%= f.label :birthday, "誕生日" %>
+  <%= f.date_select :birthday,start_year: Date.today.year - 50, end_year: Date.today.year, include_blank: true %>
+
+  <%= f.label :breed_id, "品種" %>
+  <%= f.number_field :breed_id %>
+
+  <%= f.label :color_id, "色" %>
+  <%= f.number_field :color_id %>
+
+  <%= f.submit "登録する" %>
+<% end %>

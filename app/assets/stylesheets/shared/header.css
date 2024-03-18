@@ -6,7 +6,8 @@
   width: 100vw;
   padding: 2vh 15vw;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .search-bar-contents {
@@ -16,7 +17,7 @@
 }
 
 .nekoicon {
-  width: 12vw;
+  width: 14vw;
   margin-right: 10vw;
 }
 
@@ -45,6 +46,12 @@
   width: 100%;
 }
 
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  color:chocolate;
+}
+
 .nav {
   font-size: 18px;
   display: flex;
@@ -53,6 +60,8 @@
   width: 100%;
   padding: 1vh 0;
 }
+
+
 
 .lists-left {
   display: flex;
@@ -74,7 +83,13 @@
 .lists-right {
   display: flex;
   list-style: none;
+  margin-bottom: 10px;
   align-items: flex-end;
+  justify-content: flex-end; 
+}
+
+.lists-right li {
+  margin-right: 3vw; /* リストアイテムの右側にビューポート幅の3%のマージンを追加 */
 }
 
 
@@ -83,6 +98,11 @@
   margin-right: 3vw;
   color: #333333;
   font-weight: bold;
+}
+
+.mypage {
+  text-decoration: none;
+  color: #333333;
 }
 
 

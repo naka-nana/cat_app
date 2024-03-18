@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  get 'cats/new'
+  get 'cats/create'
   devise_for :users
-  resources :users, only: [:edit, :update]
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :users do
+    resources :cats, only: [:new, :create]
+    resources :users, only: [:show]
+  end
+  
+  resources :posts do
+    resources :users, only: [:edit, :update,:show]
+  end
 end
