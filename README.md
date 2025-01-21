@@ -68,3 +68,123 @@ rails server
   •	企画・設計: 1週間(例)  
   •	開発: 3週間 (例)   
   •	テスト・修正: 1週間(例)
+
+
+## usersテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| user       | references | null: false, foreign_key: true |
+| email      | string	    | null: false, unique: true      |
+| password   | string	    | null: false                    |
+| nickname   | string	    | null: false                    |
+| created_at | datetime   |	null: false                    |
+| updated_at | datetime   |	null: false                    |
+
+### Association
+- has_many :cats
+- has_many :posts
+- has_many :likes
+- has_many :comments
+- has_many :follows, foreign_key: :follower_id
+- has_many :followees, through: :follows, source: :followee
+- has_many :reverse_follows, class_name: "Follow", foreign_key: :followee_id
+- has_many :followers, through: :reverse_follows, source: :follower
+
+## postsテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| user_id    | references | null: false, foreign_key: true |
+| cat_id     | references | null: false, foreign_key: true |
+| title      | string	    | null: false                    |
+| content    | text       | null: false                    |
+| image      | string     | null: false                    |
+| created_at | datetime   |	null: false                    |
+| updated_at | datetime   |	null: false                    |
+
+### Association
+- belongs_to :user
+- belongs_to :cat
+- has_many :likes
+- has_many :comments
+
+## catsテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| user_id    | references | null: false, foreign_key: true |
+| name       | string     | null: false                    |
+| age        | integer    | null: false                    |
+| breed      | string     | null: false                    |
+| created_at | datetime   |	null: false                    |
+| updated_at | datetime   |	null: false                    |
+
+### Association
+- belongs_to :user
+- has_many :posts
+- has_many :results
+
+## likesテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| user_id    | references | null: false, foreign_key: true |
+| post_id    | references | null: false, foreign_key: true |
+| created_at | datetime   |	null: false                    |
+| updated_at | datetime   |	null: false                    |
+
+### Association
+- belongs_to :user
+- belongs_to :post
+
+## commentsテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| user_id    | references | null: false, foreign_key: true |
+| post_id    | references | null: false, foreign_key: true |
+| content    | text       | null: false                    |
+| created_at | datetime   |	null: false                    |
+| updated_at | datetime   |	null: false                    |
+
+### Association
+- belongs_to :user
+- belongs_to :post
+
+## followsテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| follower_id| bigint     | null: false, foreign_key: true |
+| followee_id| bigint     | null: false, foreign_key: true |
+| created_at | datetime   |	null: false                    |
+| updated_at | datetime   |	null: false                    |
+
+### Association
+- belongs_to :follower, class_name: "User"
+- belongs_to :followee, class_name: "User"
+
+## resultsテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| cat_id     | bigint     | null: false, foreign_key: true |
+| total_score| integer    | null: false, foreign_key: true |
+| created_at | datetime   |	null: false                    |
+| updated_at | datetime   |	null: false                    |
+
+### Association
+- belongs_to :cat
+
+## questionsテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| text	     | string     | null: false                    |
+| options    | text       | null: false                    |
+| score	     | integer    | null: false                    |
+| created_at | datetime   |	null: false                    |
+| updated_at | datetime   |	null: false                    |
+
+### Association
