@@ -5,12 +5,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+        <header class="header">
+      <div class="header__bar row">
+        <h1 class="grid-6"><a href="/">ねこのげぼく</a></h1>
+        <div class="user_nav grid-6">
+          <a class="post" href="/tweets/new">投稿する</a>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer>
+      <p>
+        Copyright CatApp 2025.
+      </p>
+    </footer>
   </body>
 </html>
