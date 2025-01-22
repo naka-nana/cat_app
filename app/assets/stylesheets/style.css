@@ -666,7 +666,7 @@ a {
 }
 
 a:hover {
-  color: #57C3E9;
+  color: #c55d13;
 }
 
 .bold {
@@ -705,7 +705,7 @@ form input[type="submit"] {
 
 .btn,
 header.header div.header__bar.row div.grid-6 a.post {
-  padding: 8px 20px;
+  padding: 8px 10px;
   font-size: 14px;
   border: 2px solid #c55d13;
   color: #c55d13;
@@ -717,8 +717,8 @@ header.header div.header__bar.row div.grid-6 a.post {
 
 .btn:hover,
 header.header div.header__bar.row div.grid-6 a.post:hover {
-  border-color: #9bdbf2;
-  color: #9bdbf2;
+  border-color: #c55d13;
+  color: #c55d13;
 }
 
 .title {
@@ -767,14 +767,19 @@ header.header div.header__bar.row div.grid-6 {
 }
 
 header.header div.header__bar.row div.grid-6 a.post {
-  width: 120px;
+  width: 160px;
   display: inline-left;
   margin-left: 10px;
 }
 
 header.header .user_nav {
+  display: flex; /* 横並びにする */
+  align-items: center; /* 垂直方向の中央揃え */
+  justify-content: space-between: /* 左寄せ（必要に応じてcenterやspace-betweenに変更可） */
+  gap: 10px; /* ボタン間の間隔 */
   position: relative;
-  height: 100px;
+  height: 80px;
+  gap: 5px;
   right: 0;
 }
 
@@ -797,7 +802,7 @@ header.header .user_nav span:after {
 }
 
 header.header .user_nav span:hover ul {
-  color: #57C3E9;
+  color: #c55d13;
   display: block;
 }
 
@@ -931,7 +936,7 @@ div.contents.row div.content_post .more ul.more_list li a {
 }
 
 div.contents.row div.content_post .more ul.more_list li a:hover {
-  background-color: #57C3E9;
+  background-color: #c55d13;
   color: #fff;
 }
 
@@ -994,7 +999,7 @@ form textarea {
 }
 
 form input[type="submit"] {
-  background-color: #57C3E9;
+  background-color: #c55d13;
   border-radius: 20px;
   color: #fff;
   border: 0;
@@ -1002,7 +1007,7 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-  background-color: #84d3ef;
+  background-color: #c55d13;
 }
 
 .container {
