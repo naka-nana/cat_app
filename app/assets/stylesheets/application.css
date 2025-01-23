@@ -16,6 +16,229 @@
  * {
   box-sizing: border-box;
 }
+
+
+body, html {
+  font-family: 'Unica One', "Avenir", "游ゴシック", "YuGothic", "ヒラギノ角ゴ Pro W6", "HIragino Kaku Gothic Pro W6", "HIragino Kaku Gothic Pro", Osaka, Meiryo, "メイリオ", "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif;
+  margin: 0;
+  padding: 0 100px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* ヘッダー */
+header.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #d8d8d8;
+  z-index: 10;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+}
+
+.header__bar {
+  background-color: #fff;
+  border-bottom: 1px solid #d8d8d8;
+  padding: 10px 240px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center; /* 縦方向を中央揃え */
+  justify-content: space-between; /* 左右に分ける */
+  height: 60px; /* 高さを固定 */
+}
+
+header.header h1 a {
+  font-size:24px;
+  text-decoration: none;
+  color: #333;
+}
+
+header.header .user_nav {
+  display: flex;
+  gap: 10px;
+}
+
+header.header .user_nav a {
+  text-decoration: none;
+  color: #c55d13;
+  border: 3px solid #c55d13;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+header.header .user_nav a:hover {
+  background-color: #c55d13;
+  color: #fff;
+}
+
+/* フッター */
+footer {
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #888;
+}
+
+/* コンテナの基本レイアウト */
+.container {
+  max-width: 960px;
+  margin: 80px auto 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 投稿リスト */
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.post-list .post-item {
+  background-color: #fff;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  padding: 10px;
+  width: calc(33.333% - 20px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.post-list .post-item h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.post-list .post-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.post-list .post-item a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #c55d13;
+  border-radius: 3px;
+}
+
+.post-list .post-item a:hover {
+  background-color: #a04d10;
+}
+
+/* フォーム */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+form input, form select, form textarea {
+  padding: 8px;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+  font-size: 14px;
+  width: 100%;
+}
+
+form input[type="submit"] {
+  background-color: #c55d13;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+form input[type="submit"]:hover {
+  background-color: #a04d10;
+}
+
+/* エラーメッセージ */
+.error-messages {
+  background-color: #ffe5e5;
+  color: #c00;
+  padding: 10px;
+  border: 1px solid #c00;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.error-messages ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.error-messages ul li {
+  font-size: 14px;
+}
+
+/* 猫の管理（カード） */
+.cat-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cat-list .cat-card {
+  width: calc(33.333% - 20px);
+  background-color: #fff;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.cat-list .cat-card h3 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.cat-list .cat-card p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.cat-list .cat-card a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #c55d13;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.cat-list .cat-card a:hover {
+  background-color: #a04d10;
+}
 .mypage-header {
   text-align: center; /* 中央揃え */
   margin-top: 20px; /* 上部に少し余白を追加 */
@@ -73,4 +296,8 @@
   .cat-card {
     width: 100%; /* カード幅を100%にする */
   }
+}
+
+.mypage-header {
+  margin-top: 80px; /* 上部に大きな余白を追加 */
 }
