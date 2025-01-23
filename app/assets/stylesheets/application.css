@@ -16,3 +16,61 @@
  * {
   box-sizing: border-box;
 }
+.mypage-header {
+  text-align: center; /* 中央揃え */
+  margin-top: 20px; /* 上部に少し余白を追加 */
+}
+
+.cats-list {
+  display: flex; /* 横並びにする */
+  flex-wrap: wrap; /* 横幅が足りない場合は折り返す */
+  gap: 20px; /* 各カードの間にスペースを追加 */
+  margin-top: 20px;
+}
+
+.cat-card {
+  border: 1px solid #ddd; /* 枠線を追加 */
+  border-radius: 8px; /* 角を丸くする */
+  padding: 15px;
+  width: 200px; /* 各カードの幅を固定 */
+  text-align: center;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* カードに影を付ける */
+}
+
+.cat-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.cat-card p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.cat-card .cat-detail-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  color: #fff;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.cat-card .cat-detail-link:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .cats-list {
+    flex-direction: column; /* 小さい画面では縦並びにする */
+  }
+
+  .cat-card {
+    width: 100%; /* カード幅を100%にする */
+  }
+}

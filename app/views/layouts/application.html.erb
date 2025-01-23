@@ -18,7 +18,7 @@
           <div class="user_nav grid-6">
             <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
             <%= link_to "投稿する", "/", class: "post" %>
-            <%= link_to "マイページ", "/", class: "post" %>
+            <%= link_to 'マイページ', mypage_user_path(current_user), class: "post" %>
           </div>
         <% else %>
           <div class="grid-6">
