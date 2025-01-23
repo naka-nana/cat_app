@@ -1,0 +1,18 @@
+<div class="mypage-header">
+  <h1><%= @user.nickname %> さんのマイページ</h1>
+  <h2>登録したねこ一覧</h2>
+</div>
+<% if @cats.any? %>
+  <div class="cats-list">
+    <% @cats.each do |cat| %>
+      <div class="cat-card">
+        <h3><%= cat.name %></h3>
+        <p><strong>年齢:</strong> <%= cat.age.name %></p>
+        <p><strong>品種:</strong> <%= cat.breed.name %></p>
+        <%= link_to '詳細を見る', cat_path(cat), class: 'cat-detail-link' %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>登録された猫がいません。</p>
+<% end %>
