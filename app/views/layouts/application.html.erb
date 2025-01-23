@@ -11,23 +11,27 @@
   </head>
 
   <body>
-        <header class="header">
-      <div class="header__bar row">
-        <h1 class="grid-6"><a href="/">ねこのげぼく</a></h1>
-        <% if user_signed_in? %>
-          <div class="user_nav grid-6">
-            <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-            <%= link_to "投稿する", "/", class: "post" %>
+  <header class="header">
+    <div class="header__bar row">
+      <h1 class="grid-6"><a href="/">ねこのげぼく</a></h1>
+      <% if user_signed_in? %>
+        <div class="user_nav grid-6">
+          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+          <%= link_to "投稿する", "/", class: "post" %>
+          <% if current_page?(mypage_user_path(current_user)) %>
+            <%= link_to 'げぼく診断', "/", class: "post" %> <!-- ここで「げぼく診断」に切り替え -->
+          <% else %>
             <%= link_to 'マイページ', mypage_user_path(current_user), class: "post" %>
-          </div>
-        <% else %>
-          <div class="grid-6">
-            <%= link_to "ログイン", new_user_session_path, class: "post" %>
-            <%= link_to "新規登録", new_user_registration_path, class: "post" %>
-          </div>
-        <% end %>
-      </div>
-    </header>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="grid-6">
+          <%= link_to "ログイン", new_user_session_path, class: "post" %>
+          <%= link_to "新規登録", new_user_registration_path, class: "post" %>
+        </div>
+      <% end %>
+    </div>
+  </header>
     <%= yield %>
     <footer>
       <p>

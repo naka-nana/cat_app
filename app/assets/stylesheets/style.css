@@ -767,7 +767,7 @@ header.header div.header__bar.row div.grid-6 {
 }
 
 header.header div.header__bar.row div.grid-6 a.post {
-  width: 160px;
+  width: 120px;
   display: inline-left;
   margin-left: 10px;
 }
@@ -775,8 +775,7 @@ header.header div.header__bar.row div.grid-6 a.post {
 header.header .user_nav {
   display: flex; /* 横並びにする */
   align-items: center; /* 垂直方向の中央揃え */
-  justify-content: space-between: /* 左寄せ（必要に応じてcenterやspace-betweenに変更可） */
-  gap: 10px; /* ボタン間の間隔 */
+  justify-content: space-between; /* 左寄せ（必要に応じてcenterやspace-betweenに変更可） */
   position: relative;
   height: 80px;
   gap: 5px;
