@@ -9,7 +9,7 @@
       </ul>
     </div>
     <% end %>
-    <%= form_with(model: @cat, local: true) do |f| %>
+    <%= form_with(model:[@user, @cat], local: true) do |f| %>
       <div>
         <%= f.label :name, '名前' %>
         <%= f.text_field :name, class: 'form-control' %>
@@ -23,6 +23,11 @@
       <div>
         <%= f.label :breed_id, '品種' %>
         <%= f.collection_select :breed_id, @breeds, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+      </div>
+
+      <div>
+        <%= f.label :image, '画像' %>
+        <%= f.file_field :image, class: 'form-control' %>
       </div>
 
       <%= f.submit '保存', class: 'btn btn-primary' %>

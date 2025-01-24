@@ -9,7 +9,7 @@
         <h3><%= cat.name %></h3>
         <p><strong>年齢:</strong> <%= cat.age.name %></p>
         <p><strong>品種:</strong> <%= cat.breed.name %></p>
-        <%= link_to '詳細を見る', cat_path(cat), class: 'cat-detail-link' %>
+        <%= link_to '詳細を見る', user_cat_path(current_user, cat), class: 'cat-detail-link' %>
       </div>
     <% end %>
   </div>

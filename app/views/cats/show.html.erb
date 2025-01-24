@@ -1,0 +1,25 @@
+<div class="">
+  <div class="cat-detail-container">
+  <h1 class="cat-detail-title"><%= @cat.name %> の詳細ページ</h1>
+
+  <div class="cat-detail-content">
+    <div class="cat-detail-info">
+      <% if @cat.image.attached? %>
+        <div>
+          <%= image_tag @cat.image, class: 'cat-image', alt: @cat.name %>
+        </div>
+      <% else %>
+        <p>画像が登録されていません。</p>
+      <% end %>
+      <p><strong>名前:</strong> <%= @cat.name %></p>
+      <p><strong>年齢:</strong> <%= @cat.age.name %></p>
+      <p><strong>品種:</strong> <%= @cat.breed.name %></p>
+    </div>
+    
+    <div class="cat-detail-buttons">
+      <%# <%= link_to '編集する', edit_user_cat_path(@user, @cat), class: 'button button-edit' %>
+      <%# <%= link_to '削除する', user_cat_path(@user, @cat), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'button button-delete' %>
+      <%= link_to '一覧に戻る', mypage_user_path(@user), class: 'button button-back' %>
+    </div>
+  </div>
+</div>

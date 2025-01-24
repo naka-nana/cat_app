@@ -242,6 +242,8 @@ form input[type="submit"]:hover {
 .mypage-header {
   text-align: center; /* 中央揃え */
   margin-top: 20px; /* 上部に少し余白を追加 */
+  font-size: 10px;
+  
 }
 
 .cats-list {
@@ -296,6 +298,99 @@ form input[type="submit"]:hover {
   .cat-card {
     width: 100%; /* カード幅を100%にする */
   }
+}
+
+/* ねこ詳細ページ */
+.cat-detail-container {
+  display: flex;
+  flex-direction: column; /* 縦方向に並べる */
+  align-items: center; /* 横方向の中央揃え */
+  justify-content: center; /* 縦方向の中央揃え */
+  text-align: center; /* テキストも中央揃え */
+  max-width: 800px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cat-detail-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cat-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cat-detail-info {
+  font-size: 16px;
+  justify-content: center;
+  color: #666;
+}
+
+.cat-detail-info p {
+  margin: 10px 0;
+}
+
+.cat-detail-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.cat-detail-buttons .button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cat-detail-buttons .button-edit {
+  background-color: #4caf50;
+}
+
+.cat-detail-buttons .button-edit:hover {
+  background-color: #45a049;
+}
+
+.cat-detail-buttons .button-delete {
+  background-color: #f44336;
+}
+
+.cat-detail-buttons .button-delete:hover {
+  background-color: #e53935;
+}
+
+.cat-detail-buttons .button-back {
+  background-color: #2196f3;
+}
+
+.cat-detail-buttons .button-back:hover {
+  background-color: #1e88e5;
+}
+
+/* 画像アップロード */
+.cat-image {
+  width: 300px; /* 横幅を統一 */
+  height: 300px; /* 高さを統一 */
+  object-fit: cover; /* アスペクト比を保ちつつ中央を切り抜く */
+  border-radius: 8px; /* 角を丸くする場合 */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .mypage-header {
