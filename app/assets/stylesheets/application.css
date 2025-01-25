@@ -241,7 +241,7 @@ form input[type="submit"]:hover {
 }
 .mypage-header {
   text-align: center; /* 中央揃え */
-  margin-top: 20px; /* 上部に少し余白を追加 */
+  margin-top: 10px; /* 上部に少し余白を追加 */
   font-size: 10px;
   
 }
@@ -251,6 +251,7 @@ form input[type="submit"]:hover {
   flex-wrap: wrap; /* 横幅が足りない場合は折り返す */
   gap: 20px; /* 各カードの間にスペースを追加 */
   margin-top: 20px;
+  justify-content: center;
 }
 
 .cat-card {
@@ -393,7 +394,5 @@ form input[type="submit"]:hover {
   margin-bottom: 20px;
 }
 
-.mypage-header {
-  margin-top: 80px; /* 上部に大きな余白を追加 */
-}
+
 
