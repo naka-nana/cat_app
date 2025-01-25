@@ -1,5 +1,6 @@
 class Cat < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :age
   belongs_to :breed

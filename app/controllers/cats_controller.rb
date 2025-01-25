@@ -2,8 +2,15 @@ class CatsController < ApplicationController
   before_action :authenticate_user!
   # before_action :set_cat, only: [:edit, :update, :destroy]
   before_action :set_form_data, only: [:new, :create]
+  def index
+    @user = User.find(params[:id]) # この部分を確認
+    @cats = @user.cats
+    render 'users/mypage'
+  end
+
   def new
-    @cat = Cat.new
+    @user = User.find(params[:user_id])
+    @cat = @user.cats.new
     @ages = Age.all
     @breeds = Breed.all
   end
@@ -11,14 +18,16 @@ class CatsController < ApplicationController
   def create
     @cat = current_user.cats.build(cat_params)
     if @cat.save
-      redirect_to new_cat_path, notice: '猫が登録されました！'
+      redirect_to new_user_cat_path(@user), notice: '猫が登録されました！'
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  # def show
-  # end
+  def show
+    @user = User.find(params[:user_id])
+    @cat = @user.cats.find(params[:id])
+  end
 
   # def edit
   #   @ages = Age.all
@@ -41,7 +50,10 @@ class CatsController < ApplicationController
   private
 
   def set_cat
-    @cat = current_user.cats.find(params[:id])
+    @user = User.find(params[:id]) # パラメータからユーザーを取得
+    return unless @user.nil?
+
+    redirect_to root_path, alert: 'ユーザーが見つかりません。'
   end
 
   def set_form_data
@@ -50,6 +62,6 @@ class CatsController < ApplicationController
   end
 
   def cat_params
-    params.require(:cat).permit(:name, :age_id, :breed_id)
+    params.require(:cat).permit(:name, :age_id, :breed_id, :image)
   end
 end

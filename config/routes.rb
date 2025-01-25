@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   get 'posts/index'
   resources :users, only: [] do
     member do
-      get 'mypage', to: 'users#mypage'
+      get 'mypage', to: 'cats#index', as: :mypage
     end
+    resources :cats, only: [:new, :create, :show]
   end
-  
-  resources :cats
 end
