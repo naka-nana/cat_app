@@ -385,8 +385,8 @@ form input[type="submit"]:hover {
 
 /* 画像アップロード */
 .cat-image {
-  width: 300px; /* 横幅を統一 */
-  height: 300px; /* 高さを統一 */
+  width: 200px; /* 横幅を統一 */
+  height: 200px; /* 高さを統一 */
   object-fit: cover; /* アスペクト比を保ちつつ中央を切り抜く */
   border-radius: 8px; /* 角を丸くする場合 */
   border-radius: 8px;
