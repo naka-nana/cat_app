@@ -394,5 +394,26 @@ form input[type="submit"]:hover {
   margin-bottom: 20px;
 }
 
+.button-container {
+  text-align: center; /* 子要素を中央揃え */
+  margin-top: 20px; /* 全体の上余白 */
+  font-size: 12px;
+}
 
+.button-back {
+  background-color: #c55d13; /* 背景色 */
+  color: #fff; /* 文字色 */
+  border: none; /* 枠線なし */
+  cursor: pointer; /* ポインタをクリック可能に */
+  padding: 10px 20px; /* 内側の余白 */
+  text-decoration: none; /* テキスト装飾を消す */
+  display: inline-block; /* インラインブロックにする */
+  text-align: center; /* テキストを中央揃え */
+  border-radius: 5px; /* 角を丸くする */
+  margin: 0 auto;
+}
 
+/* ホバー時のスタイル */
+.button-back:hover {
+  background-color: #a04d10; /* 少し暗い色に変更 */
+}
