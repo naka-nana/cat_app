@@ -6,6 +6,6 @@ Rails.application.routes.draw do
     member do
       get 'mypage', to: 'cats#index', as: :mypage
     end
-    resources :cats, only: [:new, :create, :show]
+    resources :cats, only: [:new, :create, :show, :edit, :update]
   end
 end
