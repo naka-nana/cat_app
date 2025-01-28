@@ -1,6 +1,6 @@
 <div class="">
   <div class="cat-detail-container">
-  <h1 class="cat-detail-title"><%= @cat.name %> の詳細ページ</h1>
+  <h1 class="cat-detail-title"><%= @cat.name %> の詳細</h1>
 
   <div class="cat-detail-content">
     <div class="cat-detail-info">
@@ -18,7 +18,7 @@
     
     <div class="cat-detail-buttons">
       <%= link_to '編集する', edit_user_cat_path(@user, @cat), class: 'button button-edit' %>
-      <%# <%= link_to '削除する', user_cat_path(@user, @cat), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'button button-delete' %>
+      <%= link_to '削除する', user_cat_path(@user, @cat), data: { turbo_method: :delete },class: 'button button-delete' %>
       <%= link_to '一覧に戻る', mypage_user_path(@user), class: 'button button-back' %>
     </div>
   </div>
