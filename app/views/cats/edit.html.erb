@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>ねこの編集</h1>
+
+  <%= form_with model: [@user, @cat], local: true do |f| %>
+    <div>
+      <%= f.label :name, "名前" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= f.label :age_id, "年齢" %>
+      <%= f.select :age_id, Age.all.pluck(:name, :id), { include_blank: "選択してください" }, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= f.label :breed_id, "品種" %>
+      <%= f.select :breed_id, Breed.all.pluck(:name, :id), { include_blank: "選択してください" }, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= f.label :image, "写真" %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= f.submit "更新する", class: "button-submit" %>
+    </div>
+  <% end %>
+    <div class="button-container">
+      <%= link_to "戻る", user_cat_path(@user, @cat), class: "button-back" %>
+    </div>
+</div>
