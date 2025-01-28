@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_cat, only: [:edit, :update, :destroy]
+  before_action :set_cat, only: [:edit, :update]
   before_action :set_form_data, only: [:new, :create]
   def index
     @user = User.find(params[:id]) # この部分を確認
@@ -29,18 +29,17 @@ class CatsController < ApplicationController
     @cat = @user.cats.find(params[:id])
   end
 
-  # def edit
-  #   @ages = Age.all
-  #   @breeds = Breed.all
-  # end
+  def edit
+    @cat = @user.cats.find(params[:id])
+  end
 
-  # def update
-  #   if @cat.update(cat_params)
-  #     redirect_to mypage_user_path(current_user), notice: '猫情報が更新されました！'
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+    if @cat.update(cat_params)
+      redirect_to mypage_user_path(current_user), notice: '猫情報が更新されました！'
+    else
+      render :edit
+    end
+  end
 
   # def destroy
   #   @cat.destroy
@@ -50,10 +49,13 @@ class CatsController < ApplicationController
   private
 
   def set_cat
-    @user = User.find(params[:id]) # パラメータからユーザーを取得
-    return unless @user.nil?
+    @user = User.find_by(id: params[:user_id])
+    redirect_to root_path, alert: 'ユーザーが見つかりません。' and return unless @user
 
-    redirect_to root_path, alert: 'ユーザーが見つかりません。'
+    @cat = @user.cats.find_by(id: params[:id])
+    return if @cat
+
+    redirect_to user_mypage_path(@user), alert: '猫が見つかりません。' and return
   end
 
   def set_form_data
