@@ -397,10 +397,10 @@ form input[type="submit"]:hover {
 .button-container {
   text-align: center; /* 子要素を中央揃え */
   margin-top: 20px; /* 全体の上余白 */
+  font-size: 12px;
 }
 
 .button-back {
-  font-size: 12px;
   background-color: #c55d13; /* 背景色 */
   color: #fff; /* 文字色 */
   border: none; /* 枠線なし */
