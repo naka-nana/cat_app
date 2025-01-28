@@ -1,0 +1,2 @@
+class DiagnosisController < ApplicationController
+end
