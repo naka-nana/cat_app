@@ -1,6 +1,6 @@
 class CatsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cat, only: [:edit, :update]
+  before_action :set_cat, only: [:edit, :update, :destroy]
   before_action :set_form_data, only: [:new, :create]
   def index
     @user = User.find(params[:id]) # この部分を確認
@@ -41,10 +41,10 @@ class CatsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @cat.destroy
-  #   redirect_to mypage_user_path(current_user), notice: '猫情報が削除されました。'
-  # end
+  def destroy
+    @cat.destroy
+    redirect_to mypage_user_path(@user), notice: '猫情報が削除されました。'
+  end
 
   private
 
