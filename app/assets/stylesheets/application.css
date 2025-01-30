@@ -417,3 +417,15 @@ form input[type="submit"]:hover {
 .button-back:hover {
   background-color: #a04d10; /* 少し暗い色に変更 */
 }
+
+/* 質問のスタイル */
+.question_select {
+  display: flex;
+  gap: 20px;
+}
+
+.radio-option .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
