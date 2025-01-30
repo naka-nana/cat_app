@@ -5,8 +5,16 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     get 'diagnosis', to: 'diagnosis#select_cat', as: :select_diagnosis_cat
+    post 'diagnosis/start', to: 'diagnosis#start', as: 'start_diagnosis'
     member do
       get 'mypage', to: 'cats#index', as: :mypage
+    end
+
+    resources :cats, only: [:new, :create, :show, :edit, :update, :destroy] do
+      
+      get 'diagnosis/question/:question_number', to: 'diagnosis#question', as: :question_diagnosis
+      post 'diagnosis/answer/:question_number', to: 'diagnosis#answer', as: :answer_diagnosis
+      get 'diagnosis/result', to: 'diagnosis#result', as: :result_diagnosis
     end
   end
 end
