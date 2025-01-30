@@ -1,36 +1,18 @@
-<<h1>げぼく診断</h1>
+<h1>げぼく診断</h1>
 
 <% if @cats.any? %>
   <p>診断したい猫を選んでください:</p>
 
-  <!-- フォームのIDを設定して、動的なURL変更に対応 -->
-  <%= form_with url: user_cat_start_diagnosis_path(@user, cat_id: ''), method: :post, local: true, id: "diagnosis-form" do |f| %>
+  <%= form_with url: user_start_diagnosis_path(@user.id), method: :post, local: true do |f| %>
     <% @cats.each do |cat| %>
       <div>
-        <%= f.radio_button :selected_cat_id, cat.id, required: true, id: "cat_#{cat.id}" %>
+        <%= f.radio_button :cat_id, cat.id, required: true, id: "cat_#{cat.id}" %>
         <%= label_tag "cat_#{cat.id}", cat.name %>
       </div>
     <% end %>
-
-    <!-- 隠しフィールドに選択したcat_idを保持 -->
-    <%= f.hidden_field :cat_id, id: 'hidden-cat-id' %>
     <%= f.submit "診断を開始", class: "button-submit" %>
   <% end %>
+
 <% else %>
   <p>猫が登録されていません。</p>
 <% end %>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const radios = document.querySelectorAll("input[type='radio'][name='selected_cat_id']");
-    const hiddenField = document.getElementById('hidden-cat-id');
-    const form = document.getElementById('diagnosis-form');
-
-    radios.forEach(radio => {
-      radio.addEventListener("change", function() {
-        hiddenField.value = this.value;
-        form.action = `/users/<%= @user.id %>/cats/${this.value}/diagnosis/start`;  // URLを動的に設定
-      });
-    });
-  });
-</script>
