@@ -20,7 +20,7 @@
           <%= link_to "投稿する", "/", class: "post" %>
           <% if current_page?(mypage_user_path(current_user)) %>
             <%= link_to 'ねこ登録', new_user_cat_path(current_user), class: "post" %>
-            <%= link_to 'げぼく診断', "/", class: "post" %> <!-- ここで「げぼく診断」に切り替え -->
+            <%= link_to 'げぼく診断', user_select_diagnosis_cat_path(current_user), class: "post" %> <!-- ここで「げぼく診断」に切り替え -->
           <% else %>
             <%= link_to 'マイページ', mypage_user_path(current_user), class: "post" %>
           <% end %>
