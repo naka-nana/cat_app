@@ -1,0 +1,16 @@
+<h1>げぼく診断</h1>
+
+<p><%= @question %></p>
+<p>現在の質問番号: <%= @question_number %></p>
+<p>質問ID: <%= @question_id %></p>
+<p>質問内容: <%= @question %></p>
+
+<% next_question_number = (@question_number || 0).to_i + 1 %> <!-- nil にならないように修正 -->
+<p>次の質問番号: <%= next_question_number %></p>
+<%= form_with url: user_cat_answer_diagnosis_path(@user, @cat, question_number: @question_number), method: :post, local: true do |f| %>
+  <div>
+    <%= f.radio_button :answer, 1, required: true %> <label>はい</label>
+    <%= f.radio_button :answer, 0 %> <label>いいえ</label>
+  </div>
+  <%= f.submit "次の質問へ", class: "button-submit" %>
+<% end %>
