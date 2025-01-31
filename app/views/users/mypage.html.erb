@@ -7,7 +7,14 @@
     <div class="cats-list">
       <% @cats.each do |cat| %>
         <div class="cat-card">
-          <h3><%= cat.name %></h3>
+          <div class="cat-item">
+            <p>
+              <%= cat.name %>
+              <% if cat.diagnosis_result.present? %>
+                <span><%= cat.diagnosis_result[0] %></span>
+              <% end %>
+            </p>
+          </div>
           <p><strong>年齢:</strong> <%= cat.age.name %></p>
           <p><strong>品種:</strong> <%= cat.breed.name %></p>
           <%= link_to '詳細を見る', user_cat_path(current_user, cat), class: 'cat-detail-link' %>

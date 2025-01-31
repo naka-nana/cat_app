@@ -445,3 +445,13 @@ form input[type="submit"]:hover {
   padding: 5px 10px;
   border-radius: 5px;
 }
+/*診断結果のオプション*/
+.diagnosis-result {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.cat-item span {
+  font-size: 24px;
+  margin-left: 10px;
+}
