@@ -84,11 +84,14 @@ class DiagnosisController < ApplicationController
 
     score = @answers.values.map(&:to_i).sum
 
-    @result = case score
-              when 0..3 then '初心者げぼく'
-              when 4..7 then '中級げぼく'
-              else '上級げぼく！ ねこちゃんもあなたを信頼しています！'
-              end
+    result_text = case score
+                  when 0..3 then '🥉初心者げぼく'
+                  when 4..7 then '🥈中級げぼく'
+                  else '🥇上級げぼく'
+                  end
+
+    # 診断結果を保存
+    @cat.update(diagnosis_result: result_text)
 
     session.delete(:random_questions)
     session.delete(:diagnosis_answers)
