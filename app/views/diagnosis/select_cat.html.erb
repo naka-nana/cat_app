@@ -1,0 +1,22 @@
+<div class="cat-detail-container"> 
+    <h1>げぼく診断</h1>
+
+    <% if @cats.any? %>
+      <h3>どのねこを診断しますか？</h3>
+    <div class="question_select">
+      <%= form_with url: user_start_diagnosis_path(@user.id), method: :post, local: true do |f| %>
+      <div class="cats-select-list">
+        <% @cats.each do |cat| %>
+          <div class="radio-select-option">
+            <%= f.radio_button :cat_id, cat.id, required: true, id: "cat_#{cat.id}" %>
+            <%= label_tag "cat_#{cat.id}", cat.name %>
+          </div>
+        <% end %>
+      </div>
+        <%= f.submit "診断を開始", class: "button-submit" %>
+      <% end %>
+    <% else %>
+      <p>猫が登録されていません。</p>
+    <% end %>
+    </div>
+</div>

@@ -282,13 +282,13 @@ form input[type="submit"]:hover {
   padding: 5px 10px;
   font-size: 0.9em;
   color: #fff;
-  background-color: #007bff;
+  background-color: #c55d13;
   text-decoration: none;
   border-radius: 4px;
 }
 
 .cat-card .cat-detail-link:hover {
-  background-color: #0056b3;
+  background-color: #a04d10;
 }
 
 @media (max-width: 768px) {
@@ -416,4 +416,32 @@ form input[type="submit"]:hover {
 /* ホバー時のスタイル */
 .button-back:hover {
   background-color: #a04d10; /* 少し暗い色に変更 */
+}
+
+/* 質問のスタイル */
+.question_select {
+  display: flex;
+  gap: 120px;
+  margin: 30px;
+}
+
+.radio-option .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 80px;
+}
+/*ねこの選択画面*/
+.cats-select-list {
+  display: flex;
+  gap: 40px; /* ラジオボタンの間隔を調整 */
+  flex-wrap: wrap; /* 猫の数が多いと折り返しする */
+}
+
+.radio-select-option .label{
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  background-color: #f0f0f0; /* 背景色をつけても見やすい */
+  padding: 5px 10px;
+  border-radius: 5px;
 }

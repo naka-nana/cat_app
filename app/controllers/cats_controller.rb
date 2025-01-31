@@ -1,24 +1,22 @@
 class CatsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cat, only: [:edit, :update, :destroy]
+  before_action :set_user
+  before_action :set_cat, only: [:edit, :update, :destroy, :show] # `show` を追加
   before_action :set_form_data, only: [:new, :create]
+
   def index
-    @user = User.find(params[:id]) # この部分を確認
     @cats = @user.cats
     render 'users/mypage'
   end
 
   def new
-    @user = User.find(params[:user_id])
     @cat = @user.cats.new
-    @ages = Age.all
-    @breeds = Breed.all
   end
 
   def create
-    @cat = current_user.cats.build(cat_params)
+    @cat = @user.cats.build(cat_params) # `current_user.cats.build` でもOK
     if @cat.save
-      redirect_to new_user_cat_path(@user), notice: '猫が登録されました！'
+      redirect_to mypage_user_path(@user), notice: '猫が登録されました！'
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,18 +24,24 @@ class CatsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
+
+    if params[:id] == 'diagnosis'
+      @cat = @user.cats.first # まず1匹目の猫を選択
+      redirect_to user_cat_diagnosis_path(@user, @cat) and return
+    end
+
     @cat = @user.cats.find(params[:id])
   end
 
   def edit
-    @cat = @user.cats.find(params[:id])
+    # `set_cat` に処理を任せるので、ここは不要
   end
 
   def update
     if @cat.update(cat_params)
-      redirect_to mypage_user_path(current_user), notice: '猫情報が更新されました！'
+      redirect_to mypage_user_path(@user), notice: '猫情報が更新されました！'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -48,14 +52,19 @@ class CatsController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find(params[:user_id] || params[:id])
+  end
+
   def set_cat
-    @user = User.find_by(id: params[:user_id])
-    redirect_to root_path, alert: 'ユーザーが見つかりません。' and return unless @user
+    # 診断ページ (`/users/:user_id/cats/diagnosis`) の場合は `@cat` を設定しない
+    return if params[:id] == 'diagnosis'
 
     @cat = @user.cats.find_by(id: params[:id])
+
     return if @cat
 
-    redirect_to user_mypage_path(@user), alert: '猫が見つかりません。' and return
+    redirect_to mypage_user_path(@user), alert: '猫が見つかりません。' and return
   end
 
   def set_form_data
