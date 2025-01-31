@@ -1,11 +1,11 @@
 <div class="cat-detail-container"> 
     <h1>げぼく診断</h1>
 
-    <p><%= @question %></p>
+    <h2>質問 <%= @question_number %>: <%= @question %></h2>
 
     <% next_question_number = (@question_number || 0).to_i + 1 %> 
   
-    <%= form_with url: user_cat_answer_diagnosis_path(@user, @cat, question_number: @question_number), method: :post, local: true do |f| %>
+    <%= form_with url: user_cat_answer_diagnosis_path(@user, @cat, question_number: @question_number), method: :post do |f| %>
       <div class="question_select">
         <div class="radio-option">
           <%= f.radio_button :answer, 1, required: true %> <label>はい</label>
