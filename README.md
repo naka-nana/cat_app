@@ -27,7 +27,7 @@ Basic認証
 # 機能1: ねこのげぼく度診断  
 •	説明: 飼い猫ごとに質問に回答し、げぼく度をスコア化します。
 	•	画像/GIF:
-	•	診断機能のGIF
+	•	診断機能のGIF ![alt text](image-1.png)
 
 機能2: 投稿機能
 	•	説明: 猫の写真や日常を投稿し、他のユーザーと交流できます。
@@ -117,6 +117,7 @@ rails server
 | name       | string     | null: false                    |
 | age        | integer    | null: false                    |
 | breed      | string     | null: false                    |
+| diagnosis_result | string |                              |
 | created_at | datetime   |	null: false                    |
 | updated_at | datetime   |	null: false                    |
 
