@@ -1,8 +1,8 @@
 <div class="cat-detail-container"> 
     <h1>診断結果</h1>
 
-    <p>診断対象: <%= @cat.name %></p>
-    <p>結果: <%= @result %></p>
+    <h3>診断対象: <%= @cat.name %><h3>
+    <h3>結果: <%= @result %></h3>
     <div class="cat-detail-buttons">
         <%= link_to "診断ページに戻る", user_cat_result_diagnosis_path(@user, @cat), class: "button-back" %>
         <%= link_to "マイページに戻る", mypage_user_path(@user), class: "button-back" %>

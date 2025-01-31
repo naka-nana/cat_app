@@ -87,7 +87,7 @@ class DiagnosisController < ApplicationController
     @result = case score
               when 0..3 then '初心者げぼく'
               when 4..7 then '中級げぼく'
-              else '上級げぼく！猫ちゃんもあなたを信頼しています！'
+              else '上級げぼく！ ねこちゃんもあなたを信頼しています！'
               end
 
     session.delete(:random_questions)

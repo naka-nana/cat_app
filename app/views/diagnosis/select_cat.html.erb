@@ -2,7 +2,7 @@
     <h1>げぼく診断</h1>
 
     <% if @cats.any? %>
-      <p>どのねこを診断しますか？</p>
+      <h3>どのねこを診断しますか？</h3>
     <div class="question_select">
       <%= form_with url: user_start_diagnosis_path(@user.id), method: :post, local: true do |f| %>
       <div class="cats-select-list">
