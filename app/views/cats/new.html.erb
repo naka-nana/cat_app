@@ -1,7 +1,7 @@
 <div class="container">
     <% if @cat.errors.any? %>
     <div class="error-messages">
-      <h2><%= pluralize(@cat.errors.count, "エラー") %>が発生しました:</h2>
+      <h2><%= pluralize(@cat.errors.count, "エラー") %>が発生しました</h2>
       <ul>
         <% @cat.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -9,27 +9,9 @@
       </ul>
     </div>
     <% end %>
-    <%= form_with(model:[@user, @cat], local: true) do |f| %>
-      <div>
-        <%= f.label :name, '名前' %>
-        <%= f.text_field :name, class: 'form-control' %>
-      </div>
-
-      <div>
-        <%= f.label :age_id, '年齢' %>
-        <%= f.collection_select :age_id, @ages, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
-      </div>
-
-      <div>
-        <%= f.label :breed_id, '品種' %>
-        <%= f.collection_select :breed_id, @breeds, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
-      </div>
-
-      <div>
-        <%= f.label :image, '画像' %>
-        <%= f.file_field :image, class: 'form-control' %>
-      </div>
-
-      <%= f.submit '保存', class: 'btn btn-primary' %>
-    <% end %>
+   <%= render 'shared/form', user: @user, cat: @cat %>
+     <div class="button-container">
+    <%= link_to "戻る", mypage_user_path(@user), class: "button-back" %>
+  </div>
+   
 </div>
