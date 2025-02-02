@@ -4,7 +4,7 @@
       <% if user_signed_in? %>
         <div class="user_nav grid-6">
           <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-          <%= link_to "投稿する", "/", class: "post" %>
+          <%= link_to "投稿する", new_post_path, class: "post" %>
           <% if current_page?(mypage_user_path(current_user)) %>
             <%= link_to 'ねこ登録', new_user_cat_path(current_user), class: "post" %>
             <%= link_to 'げぼく診断', user_select_diagnosis_cat_path(current_user), class: "post" %> <!-- ここで「げぼく診断」に切り替え -->
