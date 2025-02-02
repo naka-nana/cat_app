@@ -51,8 +51,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_02_043735) do
   end
 
   create_table "posts", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "cat_id"
+    t.string "title", null: false
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_posts_on_cat_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -71,4 +77,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_02_043735) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cats", "users"
+  add_foreign_key "posts", "cats"
+  add_foreign_key "posts", "users"
 end
