@@ -1,0 +1,21 @@
+<h1><%= @post.title %></h1>
+
+<% if @post.image.attached? %>
+  <%= image_tag @post.image, alt: "投稿画像", class: "post-image" %>
+<% end %>
+
+<p><strong>投稿者:</strong> <%= @post.user.nickname %></p>
+
+<% if @post.content.present? %>
+  <p><%= @post.content %></p>
+<% end %>
+
+<% if @post.cat %>
+  <p>🐱 紐づいているねこ: <%= link_to @post.cat.name, user_cat_path(@post.user, @post.cat) %></p>
+<% end %>
+
+<%= link_to '一覧に戻る', posts_path, class: 'button-back' %>
+<% if @post.user == current_user %>
+  <%= link_to '編集', edit_post_path(@post), class: 'button-edit' %>
+  <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'button-delete' %>
+<% end %>
