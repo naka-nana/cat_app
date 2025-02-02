@@ -456,3 +456,37 @@ form input[type="submit"]:hover {
   font-size: 24px;
   margin-left: 10px;
 }
+
+.post-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.post-item h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.post-detail, .post-delete {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #c55d13;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.post-delete:hover {
+  background-color: #a04d10;
+}
