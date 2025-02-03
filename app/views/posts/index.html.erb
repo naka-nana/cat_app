@@ -1,28 +1,37 @@
-<h1>にゃーついギャラリー</h1>
+<div class="contents row">
+  <h1>にゃーついギャラリー</h1>
 
-<%= link_to '新しい投稿', new_post_path, class: 'button-submit' %>
+  <%# <%= link_to '新しい投稿', new_post_path, class: 'button-submit' %> 
 
-<% @posts.each do |post| %>
-  <div class="post-item">
-    <% if post.image.attached? %>
-      <%= image_tag post.image.variant(resize_to_limit: [400, 400]), alt: "投稿画像", class: "post-image" %>
-    <% end %>
+  <% @posts.each do |post| %>
+    <div class="post-item">
+      <% if post.image.attached? %>
+        <div class="post-image-wrapper" style="background-image: url(<%= url_for(post.image) %>);">
+          <div class="post-overlay">
+            <h2 class="post-title"><%= post.title %></h2>
+            <p class="post-author"><%= post.user.nickname %></p>
+          </div>
+        </div>
+      <% end %>
 
-    <h2><%= post.title %></h2>  <!-- タイトルを表示 -->
+      <div class="post-details">
+        <p class="post-author"><strong><%= post.user.nickname %> さんの投稿</strong></p>
 
-    <p><strong><%= post.user.nickname %> さんの投稿</strong></p>
-    
-    <% if post.content.present? %>
-      <p><%= post.content %></p>
-    <% end %>
-    
-    <% if post.cat %>
-      <p>🐱 ねこ: <%= link_to post.cat.name, user_cat_path(post.user, post.cat) %></p>
-    <% end %>
+        <% if post.content.present? %>
+          <p class="post-content"><%= post.content %></p>
+        <% end %>
 
-    <%= link_to '詳細を見る', post_path(post), class: 'post-detail' %>
-    <% if post.user == current_user %>  <!-- 自分の投稿のみ削除可能 -->
-      <%= link_to '削除', post_path(post), method: :delete, data: { confirm: '削除してもよろしいですか？' }, class: 'post-delete' %>
-    <% end %>
-  </div>
-<% end %>
+        <% if post.cat %>
+          <p class="post-cat">🐱 ねこ: <%= link_to post.cat.name, user_cat_path(post.user, post.cat) %></p>
+        <% end %>
+
+        <div class="post-actions">
+          <%= link_to '詳細を見る', post_path(post), class: 'post-detail' %>
+          <% if post.user == current_user %>
+            <%= link_to '削除', post_path(post), method: :delete, data: { confirm: '削除してもよろしいですか？' }, class: 'post-delete' %>
+          <% end %>
+        </div>
+      </div>
+    </div> <!-- post-item 終了 -->
+  <% end %> <!-- each ループの終了 -->
+</div> <!-- contents 終了 -->
