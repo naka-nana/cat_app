@@ -1,7 +1,8 @@
+<div class="container">
 <h1><%= @post.title %></h1>
 
 <% if @post.image.attached? %>
-  <%= image_tag @post.image, alt: "投稿画像", class: "post-image" %>
+  <%= image_tag @post.image.variant(resize_to_limit: [300, 300]), alt: "投稿画像", class: "post-image" %>
 <% end %>
 
 <p><strong>投稿者:</strong> <%= @post.user.nickname %></p>
@@ -19,3 +20,4 @@
   <%= link_to '編集', edit_post_path(@post), class: 'button-edit' %>
   <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'button-delete' %>
 <% end %>
+</div>

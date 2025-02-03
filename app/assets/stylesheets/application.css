@@ -505,6 +505,7 @@ form input[type="submit"]:hover {
   background-size: cover;  /* 画像を全体に表示 */
   background-position: center;  /* 中央に配置 */
   position: relative;
+  
 }
 
 .post-overlay {
@@ -527,4 +528,69 @@ form input[type="submit"]:hover {
   font-size: 16px;
   font-style: italic;
   margin: 5px 0 0;
+}
+
+.contents {
+  width: 80%;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.post-card {
+  width: 600px;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.post-image-wrapper {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+.post-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+  color: white;
+  padding: 20px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.post-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.post-author, .post-content, .post-cat {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.author-link,
+.cat-link {
+  color: #fff;
+  text-decoration: underline;
+  text-decoration: none;
+}
+
+.author-link:hover,
+.cat-link:hover {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+.post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-image:hover {
+  transform: scale(1.05); /* ホバー時に少し拡大 */
 }
