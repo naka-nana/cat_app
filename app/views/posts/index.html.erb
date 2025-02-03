@@ -1,0 +1,28 @@
+<div class="contents">
+  <h2>にゃーついギャラリー</h2>
+
+  <% @posts.each do |post| %>
+      <div class="post-card">
+      <% if post.image.attached? %>
+        <div class="post-image-wrapper">
+          <%= link_to image_tag(post.image.variant(resize_to_limit: [400, 300]), alt: "投稿画像", class: "post-image"), post_path(post) %>
+          <div class="post-overlay">
+            <h2 class="post-title"><%= post.title %></h2>
+            <p class="post-author">
+              投稿者: <%=  post.user.nickname %>
+            </p>
+
+            <% if post.content.present? %>
+              <p class="post-content"><%= post.content %></p>
+            <% end %>
+
+            <% if post.cat %>
+              <p class="post-cat">🐱 ねこ: <%= link_to post.cat.name, user_cat_path(post.user, post.cat) %></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,25 @@
+<h1>新しいにゃーつい投稿</h1>
+
+<%= form_with(model: @post, local: true) do |f| %>
+  <div>
+    <%= f.label :title, "写真のタイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.label :image, "写真を選択" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.label :content, "キャプション（任意）" %>
+    <%= f.text_area :content, rows: 3, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.label :cat_id, "ねこを選択（オプション）" %>
+    <%= f.collection_select :cat_id, current_user.cats, :id, :name, { prompt: "ねこを選んでください" }, class: "form-control" %>
+  </div>
+
+  <%= f.submit "投稿する", class: "button-submit" %>
+<% end %>

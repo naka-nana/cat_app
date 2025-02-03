@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root "posts#index"
-  get 'posts/index'
+    resources :posts, only: [:new, :create, :index,:show]
 
-  resources :users, only: [] do
+  resources :users, only: [:show] do
     get 'diagnosis', to: 'diagnosis#select_cat', as: :select_diagnosis_cat
     post 'diagnosis/start', to: 'diagnosis#start', as: 'start_diagnosis'
     member do
