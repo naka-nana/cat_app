@@ -189,3 +189,15 @@ rails server
 | updated_at | datetime   |	null: false                    |
 
 ### Association
+
+## post_catsテーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| cat_id    | references | null: false, foreign_key: true |
+| post_id    | references | null: false, foreign_key: true |
+
+### Association
+
+-belongs_to :post
+-belongs_to :cat
