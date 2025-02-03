@@ -9,7 +9,7 @@
           <div class="post-overlay">
             <h2 class="post-title"><%= post.title %></h2>
             <p class="post-author">
-              投稿者: <%= link_to post.user.nickname, user_path(post.user), class: "author-link" %>
+              投稿者: <%=  post.user.nickname %>
             </p>
 
             <% if post.content.present? %>
