@@ -2,7 +2,9 @@
   <h1><%= @post.title %></h1>
 
   <% if @post.image.attached? %>
-    <%= image_tag @post.image.variant(resize_to_limit: [300, 300]), alt: "投稿画像", class: "post-image" %>
+    <div class="post-image-wrapper">
+      <%= image_tag @post.image.variant(resize_to_limit: [300, 300]), alt: "投稿画像", class: "post-image-detail" %>
+    </div>
   <% end %>
 
   <p><strong>投稿者:</strong> <%= @post.user.nickname %></p>
@@ -23,6 +25,6 @@
   <%= link_to '一覧に戻る', posts_path, class: 'button-back' %>
   <% if @post.user == current_user %>
     <%= link_to '編集', edit_post_path(@post), class: 'button-edit' %>
-    <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'button-delete' %>
+    <%= link_to '削除', post_path(@post), method: :delete, data: { turbo_method: :delete, confirm: '本当に削除しますか？' }, class: 'button-delete' %>
   <% end %>
 </div>
