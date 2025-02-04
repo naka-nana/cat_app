@@ -1,28 +1,30 @@
 <div class="container">
-<h1><%= @post.title %></h1>
+  <h1><%= @post.title %></h1>
 
-<% if @post.image.attached? %>
-  <%= image_tag @post.image.variant(resize_to_limit: [300, 300]), alt: "投稿画像", class: "post-image" %>
-<% end %>
+  <% if @post.image.attached? %>
+    <div class="post-image-wrapper">
+      <%= image_tag @post.image.variant(resize_to_limit: [300, 300]), alt: "投稿画像", class: "post-image-detail" %>
+    </div>
+  <% end %>
 
-<p><strong>投稿者:</strong> <%= @post.user.nickname %></p>
+  <p><strong>投稿者:</strong> <%= @post.user.nickname %></p>
 
-<% if @post.content.present? %>
-  <p><%= @post.content %></p>
-<% end %>
+  <% if @post.content.present? %>
+    <p><%= @post.content %></p>
+  <% end %>
 
-<% if @post.cats.any? %>
-  <p>🐱 紐づいているねこ:</p>
-  <ul>
-    <% @post.cats.each do |cat| %>
-      <li><%= link_to cat.name, user_cat_path(@post.user, cat) %></li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @post.cats.any? %>
+    <p>🐱 紐づいているねこ:</p>
+    <ul>
+      <% @post.cats.each do |cat| %>
+        <li><%= link_to cat.name, user_cat_path(@post.user, cat) %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<%= link_to '一覧に戻る', posts_path, class: 'button-back' %>
-<% if @post.user == current_user %>
-  <%= link_to '編集', edit_post_path(@post), class: 'button-edit' %>
-  <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'button-delete' %>
-<% end %>
+  <%= link_to '一覧に戻る', posts_path, class: 'button-back' %>
+  <% if @post.user == current_user %>
+    <%= link_to '編集', edit_post_path(@post), class: 'button-edit' %>
+    <%= link_to '削除', post_path(@post), method: :delete, data: { turbo_method: :delete, confirm: '本当に削除しますか？' }, class: 'button-delete' %>
+  <% end %>
 </div>
