@@ -16,8 +16,14 @@
               <p class="post-content"><%= post.content %></p>
             <% end %>
 
-            <% if post.cat %>
-              <p class="post-cat">🐱 ねこ: <%= link_to post.cat.name, user_cat_path(post.user, post.cat) %></p>
+            <% if post.cats.any? %>
+              <p>🐱 紐づいているねこ:
+              <% post.cats.each do |cat| %>
+                <span class="cat-link-wrapper">
+                  <%= link_to cat.name, user_cat_path(post.user, cat), class: "cat-link" %>
+                </span>
+              <% end %>
+              </p>
             <% end %>
           </div>
         </div>

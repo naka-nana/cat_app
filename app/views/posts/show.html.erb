@@ -11,8 +11,13 @@
   <p><%= @post.content %></p>
 <% end %>
 
-<% if @post.cat %>
-  <p>🐱 紐づいているねこ: <%= link_to @post.cat.name, user_cat_path(@post.user, @post.cat) %></p>
+<% if @post.cats.any? %>
+  <p>🐱 紐づいているねこ:</p>
+  <ul>
+    <% @post.cats.each do |cat| %>
+      <li><%= link_to cat.name, user_cat_path(@post.user, cat) %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <%= link_to '一覧に戻る', posts_path, class: 'button-back' %>
