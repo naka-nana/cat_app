@@ -17,12 +17,17 @@
   </div>
 
   <div>
-    <%= f.label :cat_ids, "ねこを選択（複数選択可能）" %>
-    <%= f.collection_check_boxes :cat_ids, current_user.cats, :id, :name do |b| %>
-      <div class="checkbox-item">
-        <%= b.check_box %>
-        <%= b.label %>
-      </div>
+    <% if current_user.cats.any? %>
+    <%= f.label :cat_ids, "ねこを選択（クリックして複数選択）" %>
+    <div class="cats-select-grid">
+      <%= f.collection_check_boxes :cat_ids, current_user.cats, :id, :name do |b| %>
+        <div class="cat-option">
+          <%= b.check_box %>
+          <%= b.label(class: "cat-label") %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 
   <%= f.submit "投稿する", class: "button-submit" %>

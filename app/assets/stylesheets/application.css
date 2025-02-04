@@ -594,3 +594,38 @@ form input[type="submit"]:hover {
 .post-image:hover {
   transform: scale(1.05); /* ホバー時に少し拡大 */
 }
+
+.cats-select-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cat-option {
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.cat-option input[type="checkbox"] {
+  display: none; /* チェックボックス自体は非表示に */
+}
+
+.cat-label {
+  font-size: 16px;
+  color: #333;
+}
+
+/* チェックされているときのスタイル */
+.cat-option input[type="checkbox"]:checked + .cat-label {
+  font-weight: bold;
+  color: white;
+}
+
+.cat-option input[type="checkbox"]:checked + .cat-label {
+  background-color: #c55d13;
+  padding: 8px;
+}
