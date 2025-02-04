@@ -629,3 +629,60 @@ form input[type="submit"]:hover {
   background-color: #c55d13;
   padding: 8px;
 }
+.post-cat {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.cat-list {
+  display: flex;
+  gap: 10px; /* カード同士の間隔 */
+  flex-wrap: wrap; /* 折り返しを許可 */
+}
+
+.cat-item {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.cat-item:hover {
+  background-color: #ffe0b2; /* ホバー時の背景色 */
+}
+
+.cat-link-wrapper {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.cat-link {
+  text-decoration: none;
+  font-size: 14px;
+  color: #c55d13;
+  font-weight: bold;
+}
+
+.cat-link:hover {
+  text-decoration: underline;
+}
+
+.cat-list {
+  list-style: none; /* リストのマーカーを非表示 */
+  padding: 0;
+  display: flex;
+  gap: 10px; /* 各ねこの間隔 */
+}
+
+p {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* 折り返し可能にする */
+  gap: 10px; /* 各リンク間の間隔を調整 */
+}
