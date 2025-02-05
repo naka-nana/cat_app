@@ -36,15 +36,4 @@
       <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'show-button-delete' %>
     <% end %>
   </div>
-
-  <% if @post.cats.any? %>
-    <p>🐱 紐づいているねこ:</p>
-    <ul>
-      <% @post.cats.each do |cat| %>
-        <li><%= link_to cat.name, user_cat_path(@post.user, cat) %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
-
 </div>
