@@ -479,12 +479,11 @@ form input[type="submit"]:hover {
   position: relative;
   align-items: center; /* 横方向の中央揃え */
   justify-content: center; /* 縦方向の中央揃え */
-  text-align: center; /* テキストも中央揃え */
 }
 
 .post-image-list {
   width: 600px;
-  height: 500px;
+  height: 400px;
   object-fit: cover; /* サムネイルとしてトリミングする */
   border-radius: 8px; /* 角を丸くするオプション */
 }

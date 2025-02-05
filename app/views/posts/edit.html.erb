@@ -1,0 +1,34 @@
+<h1>にゃーつい投稿の編集</h1>
+
+<%= form_with(model: @post, local: true) do |f| %>
+  <div>
+    <%= f.label :title, "写真のタイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.label :image, "写真を選択" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.label :content, "キャプション（任意）" %>
+    <%= f.text_area :content, rows: 3, class: "form-control" %>
+  </div>
+
+  <div>
+    <% if current_user.cats.any? %>
+    <%= f.label :cat_ids, "ねこを選択（クリックして複数選択）" %>
+    <div class="cats-select-grid">
+      <%= f.collection_check_boxes :cat_ids, current_user.cats, :id, :name do |b| %>
+        <div class="cat-option">
+          <%= b.check_box %>
+          <%= b.label(class: "cat-label") %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+  <%= f.submit "更新する", class: "button-submit" %>
+<% end %>
