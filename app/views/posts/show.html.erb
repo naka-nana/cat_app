@@ -3,7 +3,9 @@
 
   <div class="post-image-wrapper-show">
   <% if @post.image.attached? %>
+
     <%= image_tag @post.image.variant(resize_to_limit: [800, 600]), alt: "投稿画像", class: "post-image-show" %>
+
   <% end %>
 </div>
 
@@ -25,6 +27,7 @@
     <% end %>
   </div>
 
+
   <div class="button-group">
     <%= link_to '一覧に戻る', posts_path, class: 'show-button-back' %>
     
@@ -33,4 +36,15 @@
       <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'show-button-delete' %>
     <% end %>
   </div>
+
+  <% if @post.cats.any? %>
+    <p>🐱 紐づいているねこ:</p>
+    <ul>
+      <% @post.cats.each do |cat| %>
+        <li><%= link_to cat.name, user_cat_path(@post.user, cat) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+
 </div>
