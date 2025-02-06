@@ -25,6 +25,12 @@
               <% end %>
               </p>
             <% end %>
+            <% if post.liked_users.include?(current_user) %>
+              <%= button_to 'いいね解除', post_like_path(post), method: :delete, remote: true %>
+            <% else %>
+              <%= button_to 'いいね', post_like_path(post), method: :post, remote: true %>
+            <% end %>
+            <p>いいね数: <%= post.likes.count %></p>
           </div>
         </div>
       <% end %>
