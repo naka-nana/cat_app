@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+  .cats-list {
+    flex-direction: column;
+  }
+
+  .cat-card {
+    width: 100%;
+  }
+
+  .post-card {
+    width: 100%;
+  }
+
+  .container {
+    padding: 10px;
+  }
+}

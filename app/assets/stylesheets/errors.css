@@ -1,0 +1,15 @@
+/* --- エラーメッセージ --- */
+.error-messages {
+  background-color: #ffe5e5;
+  color: #c00;
+  padding: 10px;
+  border: 1px solid #c00;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.error-messages ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

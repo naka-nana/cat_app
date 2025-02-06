@@ -1,0 +1,31 @@
+/* --- フォーム --- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+form input, form select, form textarea {
+  padding: 8px;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+  font-size: 14px;
+  width: 100%;
+}
+
+form input[type="submit"] {
+  background-color: #c55d13;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+form input[type="submit"]:hover {
+  background-color: #a04d10;
+}
