@@ -1,0 +1,98 @@
+/* --- ボタン --- */
+.button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button-container {
+  text-align: center; /* 子要素を中央揃え */
+  margin-top: 20px; /* 全体の上余白 */
+  font-size: 12px;
+}
+
+.button-back {
+  background-color: #c55d13; /* 背景色 */
+  color: #fff; /* 文字色 */
+  border: none; /* 枠線なし */
+  cursor: pointer; /* ポインタをクリック可能に */
+  padding: 10px 20px; /* 内側の余白 */
+  text-decoration: none; /* テキスト装飾を消す */
+  display: inline-block; /* インラインブロックにする */
+  text-align: center; /* テキストを中央揃え */
+  border-radius: 5px; /* 角を丸くする */
+  margin: 0 auto;
+}
+
+/* ホバー時のスタイル */
+.button-back:hover {
+  background-color: #a04d10; /* 少し暗い色に変更 */
+}
+
+.button-back {
+  background-color: #007bff;
+}
+
+.button-back:hover {
+  background-color: #0056b3;
+}
+
+.cat-detail-buttons .button-edit {
+  background-color: #4caf50;
+}
+
+.cat-detail-buttons .button-edit:hover {
+  background-color: #45a049;
+}
+
+.cat-detail-buttons .button-delete {
+  background-color: #f44336;
+}
+
+.cat-detail-buttons .button-delete:hover {
+  background-color: #e53935;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end; /* 右寄せ */
+  gap: 10px; /* ボタン同士の間隔を調整 */
+  margin-top: 20px; /* 上に余白をつける */
+}
+
+.show-button-back,
+.show-button-edit,
+.show-button-delete {
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.show-button-back {
+  background-color: #007bff;
+}
+
+.show-button-back:hover {
+  background-color: #0056b3;
+}
+
+.show-button-edit {
+  background-color: #4caf50;
+}
+
+.show-button-edit:hover {
+  background-color: #45a049;
+}
+
+.show-button-delete {
+  background-color: #dc3545;
+}
+
+.show-button-delete:hover {
+  background-color: #c82333;
+}
