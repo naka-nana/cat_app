@@ -1,13 +1,9 @@
 @media (max-width: 768px) {
-  .cats-list {
+  .contents {
     flex-direction: column;
   }
 
-  .cat-card {
-    width: 100%;
-  }
-
-  .post-card {
+  .post-card, .cat-card {
     width: 100%;
   }
 
