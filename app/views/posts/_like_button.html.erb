@@ -1,0 +1,11 @@
+<div class="like-button-wrapper">
+  <% if post.likes.exists?(user_id: current_user.id) %>
+    <%= link_to post_like_path(post), method: :delete, remote: true, data: { turbo: "false" }, class: "like-button liked" do %>
+      <i class="fa-solid fa-cat"></i> いいね解除
+    <% end %>
+  <% else %>
+    <%= link_to post_like_path(post), method: :post, remote: true, data: { turbo: "false" }, class: "like-button" do %>
+      <i class="fa-solid fa-cat"></i> いいね
+    <% end %>
+  <% end %>
+</div>
