@@ -26,14 +26,10 @@
       </ul>
     <% end %>
   </div>
-    <% if @post.liked_users.include?(current_user) %>
-        <%= button_to 'いいね解除', post_like_path(@post), method: :delete, remote: true %>
-      <% else %>
-        <%= button_to 'いいね', post_like_path(@post), method: :post, remote: true %>
-      <% end %>
-
-     <p>いいね数: <%= @post.likes.count %></p>
-
+    <div class="like-section">
+          <%= render 'posts/like_button', post: @post %>
+          <p class="like-count"><%= @post.likes.count %> いいね</p>
+    </div>
   <div class="button-group">
     <%= link_to '一覧に戻る', posts_path, class: 'show-button-back' %>
     
