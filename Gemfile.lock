@@ -131,6 +131,8 @@ GEM
     ffi (1.17.1-x86_64-darwin)
     ffi (1.17.1-x86_64-linux-gnu)
     ffi (1.17.1-x86_64-linux-musl)
+    font-awesome-sass (6.7.2)
+      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -206,14 +208,14 @@ GEM
     puma (6.5.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.8)
-    rack-session (2.1.0)
-      base64 (>= 0.1.0)
-      rack (>= 3.0.0)
+    rack (2.2.10)
+    rack-session (1.0.2)
+      rack (< 3)
     rack-test (2.2.0)
       rack (>= 1.3)
-    rackup (2.2.1)
-      rack (>= 3)
+    rackup (1.0.1)
+      rack (< 3)
+      webrick
     rails (7.1.5.1)
       actioncable (= 7.1.5.1)
       actionmailbox (= 7.1.5.1)
@@ -288,6 +290,14 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.4.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     securerandom (0.4.1)
     selenium-webdriver (4.28.0)
       base64 (~> 0.2)
@@ -295,9 +305,10 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sprockets (4.2.1)
+    sprockets (3.7.5)
+      base64
       concurrent-ruby (~> 1.0)
-      rack (>= 2.2.4, < 4)
+      rack (> 1, < 3)
     sprockets-rails (3.5.2)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
@@ -306,6 +317,7 @@ GEM
       railties (>= 6.0.0)
     stringio (3.1.2)
     thor (1.3.2)
+    tilt (2.6.0)
     timeout (0.4.3)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
@@ -322,6 +334,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webrick (1.9.1)
     websocket (1.2.11)
     websocket-driver (0.7.7)
       base64
@@ -350,6 +363,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker
+  font-awesome-sass (~> 6.0)
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
@@ -359,7 +373,9 @@ DEPENDENCIES
   rails (~> 7.1.0)
   rspec-rails (~> 4.0.0)
   rubocop
+  sassc-rails
   selenium-webdriver
+  sprockets (~> 3.7)
   sprockets-rails
   stimulus-rails
   turbo-rails
