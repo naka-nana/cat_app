@@ -1,0 +1,88 @@
+@import "base";
+@import "layout";
+@import "forms";
+@import "errors";
+@import "cats";
+@import "components";
+@import "posts";
+@import "responsive";
+@import "font-awesome";
+@import "likes";
+
+
+.contents {
+  display: block; // グリッドを解除して縦並びにする
+  padding: 20px;
+  gap: 20px; // カードの間隔を調整
+  padding: 20px;
+}
+
+.post-card {
+  width: 100%; // カードを親要素の幅に合わせる
+  max-width: 800px; // 必要ならば最大幅を指定（調整可能）
+  margin: 20px auto; // 縦方向に余白を取り、中央揃え
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.post-image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.like-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.like-count {
+  font-size: 14px;
+  color: #888;
+}
+
+.cat-link-wrapper {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.cat-link {
+  padding: 5px 10px;
+  background-color: #ffe0b3;
+  border-radius: 5px;
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .post-details {
+    padding: 10px;
+
+    .post-title {
+      font-size: 18px;
+    }
+
+    .post-author,
+    .post-content,
+    .like-count {
+      font-size: 14px;
+    }
+
+    .cat-link {
+      padding: 3px 7px;
+      font-size: 12px;
+    }
+  }
+}

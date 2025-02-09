@@ -26,8 +26,10 @@
       </ul>
     <% end %>
   </div>
-
-
+    <div class="like-section">
+          <%= render 'posts/like_button', post: @post %>
+          <p class="like-count"><%= @post.likes.count %> いいね</p>
+    </div>
   <div class="button-group">
     <%= link_to '一覧に戻る', posts_path, class: 'show-button-back' %>
     

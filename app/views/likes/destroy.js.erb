@@ -1,0 +1,2 @@
+document.querySelector(".like-count").textContent = "いいね数: <%= @post.likes.count %>";
+document.querySelector(".like-button-wrapper").innerHTML = '<%= j(render partial: "posts/like_button", locals: { post: @post }) %>';

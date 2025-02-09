@@ -10,3 +10,8 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+Rails.application.config.assets.precompile += %w( controllers/hello_controller.js )
+Rails.application.config.assets.precompile += %w( controllers/index.js )
+Rails.application.config.assets.precompile += %w( @rails--ujs.js )
+Rails.application.config.assets.precompile += %w( likes.scss )
+Rails.application.config.assets.precompile += %w( application.scss )

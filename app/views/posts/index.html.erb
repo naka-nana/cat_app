@@ -2,33 +2,40 @@
   <h2>にゃーついギャラリー</h2>
 
   <% @posts.each do |post| %>
-      <div class="post-card">
+    <div class="post-card">
       <% if post.image.attached? %>
         <div class="post-image-wrapper">
-          <%= link_to image_tag(post.image.variant(resize_to_limit: [400, 300]), alt: "投稿画像", class: "post-image-list"), post_path(post) %>
-          <div class="post-overlay">
-            <h2 class="post-title"><%= post.title %></h2>
-            <p class="post-author">
-              投稿者: <%=  post.user.nickname %>
-            </p>
+          <%= link_to image_tag(post.image.variant(resize_to_limit: [600, 400]), alt: "投稿画像", class: "post-image-list"), post_path(post) %>
+        </div>
+      <% end %>
 
-            <% if post.content.present? %>
-              <p class="post-content"><%= post.content %></p>
-            <% end %>
+      <div class="post-details">
+        <h2 class="post-title"><%= post.title %></h2>
 
-            <% if post.cats.any? %>
-              <p>🐱 紐づいているねこ:
+        <!-- 投稿者と紐づいているねこを横並びにする -->
+        <div class="post-author-cat">
+          <p class="post-author">投稿者: <%= post.user.nickname %></p>
+          <% if post.cats.any? %>
+            <p class="post-cats">🐱 紐づいているねこ:
               <% post.cats.each do |cat| %>
                 <span class="cat-link-wrapper">
                   <%= link_to cat.name, user_cat_path(post.user, cat), class: "cat-link" %>
                 </span>
               <% end %>
-              </p>
-            <% end %>
-          </div>
+            </p>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+
+        <% if post.content.present? %>
+          <p class="post-content"><%= post.content %></p>
+        <% end %>
+
+        <!-- いいねのマークとカウントを横並びにする -->
+        <div class="like-section">
+          <%= render 'posts/like_button', post: post %>
+          <p class="like-count"><%= post.likes.count %> いいね</p>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
