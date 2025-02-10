@@ -44,7 +44,16 @@
   </div>
   <h3>コメントを追加する</h3>
     <% if user_signed_in? %>
-      <%= form_with(model: [@post, Comment.new], id: 'comment_form') do |f| %>
+      <%= form_with(model: [@post, @comment], id: 'comment_form') do |f| %>
+        <% if @comment&.errors.any? %>
+          <div class="error-messages">
+            <ul>
+              <% @comment.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
         <div>
           <%= f.label :content, "コメント:" %>
           <%= f.text_area :content, rows: 3 %>

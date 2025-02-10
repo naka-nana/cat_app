@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comments.includes(:user)
     @current_user = current_user # ログイン中のユーザー情報を変数に格納して渡す
+    @comment = Comment.new
   end
 
   def new
