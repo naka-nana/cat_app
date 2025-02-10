@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post
 
   def create
@@ -28,5 +29,11 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def authenticate_user!
+    return if user_signed_in?
+
+    redirect_to new_user_session_path, alert: 'コメントをするにはログインが必要です。'
   end
 end
