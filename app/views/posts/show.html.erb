@@ -38,8 +38,8 @@
       <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'show-button-delete' %>
     <% end %>
   </div>
-  <h2>コメント一覧</h2>
-  <div id="comments">
+  <h2 id="comments">コメント一覧</h2>
+  <div id="comments-section">
     <% @post.comments.each do |comment| %>
       <div class="comment">
         <strong><%= comment.user.nickname %></strong>:

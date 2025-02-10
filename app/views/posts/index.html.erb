@@ -34,6 +34,16 @@
         <div class="like-section">
           <%= render 'posts/like_button', post: post %>
           <p class="like-count"><%= post.likes.count %> いいね</p>
+          <p>💬 コメント数: 
+            <% if post.comments.any? %>
+              <%= post.comments.count %>
+            <% else %>
+              まだコメントはありません
+            <% end %>
+          </p>
+
+          <!-- コメント一覧へのリンク -->
+          <p><%= link_to "コメントを見る", post_path(post, anchor: 'comments') %></p>
         </div>
       </div>
     </div>
