@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_post
-  before_action :set_comment, only: [:destroy]
+  before_action :set_comment, only: [:destroy, :update, :destroy]
 
   def create
     @comment = @post.comments.new(comment_params)
@@ -33,6 +33,30 @@ class CommentsController < ApplicationController
     else
       respond_to do |format|
         format.html { redirect_to @post, alert: '他のユーザーのコメントは削除できません。' }
+      end
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      format.turbo_stream
+      format.html # フォールバック用
+    end
+  end
+
+  def update
+    if @comment.update(comment_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to @post, notice: 'コメントが編集されました。' }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace("comment_#{@comment.id}", partial: 'comments/form',
+                                                                              locals: { comment: @comment })
+        end
+        format.html { render :edit, alert: '編集に失敗しました。' }
       end
     end
   end
