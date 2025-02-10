@@ -1,4 +1,11 @@
 <div class="comment">
   <strong><%= comment.user.nickname %></strong>:
   <p><%= comment.content %></p>
+  <% if comment.user == current_user || current_user.admin? %>
+    <%= link_to '削除', post_comment_path(comment.post, comment), 
+                method: :delete, 
+                data: { confirm: '本当に削除しますか？' }, 
+                remote: true, 
+                class: "comment-delete-link" %>
+  <% end %>
 </div>
