@@ -40,16 +40,11 @@
   </div>
   <h2 id="comments">コメント一覧</h2>
   <div id="comments-section">
-    <% @post.comments.each do |comment| %>
-      <div class="comment">
-        <strong><%= comment.user.nickname %></strong>:
-        <p><%= comment.content %></p>
-      </div>
-    <% end %>
+    <%= render partial: "comments/comment", collection: @comments, as: :comment, locals: { current_user: current_user } %>
   </div>
   <h3>コメントを追加する</h3>
     <% if user_signed_in? %>
-      <%= form_with(model: [@post, Comment.new], id: 'comment_form', data: { turbo_frame: 'comments' }) do |f| %>
+      <%= form_with(model: [@post, Comment.new], id: 'comment_form') do |f| %>
         <div>
           <%= f.label :content, "コメント:" %>
           <%= f.text_area :content, rows: 3 %>

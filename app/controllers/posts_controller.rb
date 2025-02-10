@@ -3,10 +3,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user, :cat, image_attachment: :blob).order(created_at: :desc)
+    @posts = Post.order(created_at: :desc)
   end
 
   def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments.includes(:user)
+    @current_user = current_user # ログイン中のユーザー情報を変数に格納して渡す
   end
 
   def new

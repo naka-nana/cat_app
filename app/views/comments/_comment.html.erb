@@ -1,11 +1,8 @@
-<div class="comment">
-  <strong><%= comment.user.nickname %></strong>:
+<div id="comment_<%= comment.id %>" class="comment">
+  <strong><%= comment.user.nickname %>:</strong>
   <p><%= comment.content %></p>
-  <% if comment.user == current_user || current_user.admin? %>
-    <%= link_to '削除', post_comment_path(comment.post, comment), 
-                method: :delete, 
-                data: { confirm: '本当に削除しますか？' }, 
-                remote: true, 
-                class: "comment-delete-link" %>
+
+  <% if current_user && comment.user_id.to_i == current_user.id.to_i %>
+    <%= link_to '削除', post_comment_path(comment.post, comment), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "delete-comment-button" %>
   <% end %>
 </div>
