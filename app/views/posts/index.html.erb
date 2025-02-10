@@ -34,7 +34,7 @@
         <div class="like-section">
           <%= render 'posts/like_button', post: post %>
           <p class="like-count"><%= post.likes.count %> いいね</p>
-          <p>💬 コメント数: 
+          <p>💬 コメント: 
             <% if post.comments.any? %>
               <%= post.comments.count %>
             <% else %>
