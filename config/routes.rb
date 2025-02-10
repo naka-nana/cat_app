@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "posts#index"
   resources :posts do
     resource :like, only: [:create, :destroy]  # 単一のいいねを管理
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
   end  
   resources :users, only: [:show] do
     get 'diagnosis', to: 'diagnosis#select_cat', as: :select_diagnosis_cat

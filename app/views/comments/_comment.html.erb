@@ -1,4 +1,13 @@
-<div class="comment">
-  <strong><%= comment.user.nickname %></strong>:
-  <p><%= comment.content %></p>
+<div id="comment_<%= comment.id %>" class="comment" style="display: flex; justify-content: space-between; align-items: center;">
+  <div>
+    <strong><%= comment.user.nickname %>:</strong>
+    <p><%= comment.content %></p>
+  </div>
+
+  <% if current_user && comment.user_id.to_i == current_user.id.to_i %>
+    <%= link_to '削除', post_comment_path(comment.post, comment), 
+        method: :delete, 
+        data: { turbo_confirm: "本当に削除しますか？" }, 
+        class: "delete-comment-button" %>
+  <% end %>
 </div>
