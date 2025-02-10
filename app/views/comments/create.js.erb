@@ -1,0 +1,5 @@
+// 新しいコメントをコメント一覧に追加する
+document.querySelector("#comments").insertAdjacentHTML("beforeend", "<%= j render @comment %>");
+
+// フォームをリセット
+document.querySelector("#new_comment_form").reset();
