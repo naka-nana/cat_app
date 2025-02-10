@@ -1,0 +1,19 @@
+<turbo-stream action="append" target="comments-section">
+  <template>
+  <%= render partial: "comments/comment", formats: [:html], locals: { comment: @comment } %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="comment_form">
+  <template>
+    <%= form_with(model: [@post, Comment.new], id: 'comment_form', data: { turbo_frame: 'comments' }) do |f| %>
+      <div>
+        <%= f.label :content, "コメント:" %>
+        <%= f.text_area :content, rows: 3 %>
+      </div>
+      <div>
+        <%= f.submit "コメントする", class: "comment-submit-button" %>
+      </div>
+    <% end %>
+  </template>
+</turbo-stream>

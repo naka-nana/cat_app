@@ -184,3 +184,27 @@
   color: #333;
   margin-bottom: 8px;
 }
+
+#comments {
+  margin-top: 20px;
+}
+
+.comment {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment strong {
+  color: #333;
+}
+
+
+.comment-link {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.comment-link:hover {
+  text-decoration: none;
+}

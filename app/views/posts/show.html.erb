@@ -38,4 +38,27 @@
       <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'show-button-delete' %>
     <% end %>
   </div>
+  <h2 id="comments">コメント一覧</h2>
+  <div id="comments-section">
+    <% @post.comments.each do |comment| %>
+      <div class="comment">
+        <strong><%= comment.user.nickname %></strong>:
+        <p><%= comment.content %></p>
+      </div>
+    <% end %>
+  </div>
+  <h3>コメントを追加する</h3>
+    <% if user_signed_in? %>
+      <%= form_with(model: [@post, Comment.new], id: 'comment_form', data: { turbo_frame: 'comments' }) do |f| %>
+        <div>
+          <%= f.label :content, "コメント:" %>
+          <%= f.text_area :content, rows: 3 %>
+        </div>
+        <div>
+          <%= f.submit "コメントする", class: "comment-submit-button" %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>コメントをするには <%= link_to 'ログイン', new_user_session_path %> が必要です。</p>
+    <% end %>
 </div>
