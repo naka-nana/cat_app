@@ -184,3 +184,16 @@
   color: #333;
   margin-bottom: 8px;
 }
+
+#comments {
+  margin-top: 20px;
+}
+
+.comment {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment strong {
+  color: #333;
+}
