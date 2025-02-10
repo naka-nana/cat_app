@@ -38,4 +38,23 @@
       <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'show-button-delete' %>
     <% end %>
   </div>
+  <h2>コメント一覧</h2>
+  <div id="comments">
+    <% @post.comments.each do |comment| %>
+      <div class="comment">
+        <strong><%= comment.user.nickname %></strong>:
+        <p><%= comment.content %></p>
+      </div>
+    <% end %>
+  </div>
+  <h3>コメントを追加する</h3>
+  <%= form_with(model: [@post, @post.comments.build], remote: true, html: { id: 'new_comment_form' }) do |f| %>
+    <div>
+      <%= f.label :content, "コメント:" %>
+      <%= f.text_area :content, rows: 3 %>
+    </div>
+    <div>
+      <%= f.submit "コメントする", class: "comment-submit-button" %>
+    </div>
+  <% end %>
 </div>
