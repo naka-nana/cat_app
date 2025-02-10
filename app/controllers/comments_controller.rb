@@ -1,21 +1,30 @@
 class CommentsController < ApplicationController
+  before_action :set_post
+
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(comment_params)
+    @comment = @post.comments.new(comment_params)
     @comment.user = current_user
 
     if @comment.save
       respond_to do |format|
-        format.js # 非同期でcreate.js.erbを呼び出す
+        format.turbo_stream
+        format.html { redirect_to @post, notice: 'コメントが追加されました。' }
       end
     else
       respond_to do |format|
-        format.js { render js: "alert('コメントの保存に失敗しました。');" }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('comment_form', partial: 'comments/form', locals: { comment: @comment })
+        end
+        format.html { redirect_to @post, alert: 'コメントの追加に失敗しました。' }
       end
     end
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:content)

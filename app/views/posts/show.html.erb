@@ -48,7 +48,7 @@
     <% end %>
   </div>
   <h3>コメントを追加する</h3>
-  <%= form_with(model: [@post, @post.comments.build], remote: true, html: { id: 'new_comment_form' }) do |f| %>
+  <%= form_with(model: [@post, Comment.new], id: 'comment_form', data: { turbo_frame: 'comments' }) do |f| %>
     <div>
       <%= f.label :content, "コメント:" %>
       <%= f.text_area :content, rows: 3 %>
