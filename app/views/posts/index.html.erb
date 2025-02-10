@@ -35,11 +35,7 @@
           <%= render 'posts/like_button', post: post %>
           <p class="like-count"><%= post.likes.count %> いいね</p>
           <p>💬 コメント: 
-            <% if post.comments.any? %>
               <%= post.comments.count %>
-            <% else %>
-              まだコメントはありません
-            <% end %>
           </p>
 
           <!-- コメント一覧へのリンク -->

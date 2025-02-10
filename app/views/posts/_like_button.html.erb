@@ -10,6 +10,8 @@
       <% end %>
     <% end %>
   <% else %>
-    <p>いいねをするには <%= link_to 'ログイン', new_user_session_path %> が必要です。</p>
+    <%= link_to new_user_session_path do %>
+      <i class="fa-solid fa-cat"></i> ログインしていいね
+    <% end %>
   <% end %>
 </div>
