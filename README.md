@@ -153,18 +153,18 @@ rails server
 - belongs_to :user
 - belongs_to :post
 
-## followsテーブル
+## relationshipsテーブル
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
 | follower_id| bigint     | null: false, foreign_key: true |
-| followee_id| bigint     | null: false, foreign_key: true |
+| following_id| bigint     | null: false, foreign_key: true |
 | created_at | datetime   |	null: false                    |
 | updated_at | datetime   |	null: false                    |
 
 ### Association
 - belongs_to :follower, class_name: "User"
-- belongs_to :followee, class_name: "User"
+- belongs_to :following, class_name: "User"
 
 ## resultsテーブル
 
