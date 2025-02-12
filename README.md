@@ -86,10 +86,12 @@ rails server
 - has_many :posts
 - has_many :likes
 - has_many :comments
-- has_many :follows, foreign_key: :follower_id
-- has_many :followees, through: :follows, source: :followee
-- has_many :reverse_follows, class_name: "Follow", foreign_key: :followee_id
-- has_many :followers, through: :reverse_follows, source: :follower
+- has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+- has_many :following, through: :active_relationships, source: :following
+
+  # フォローされる側の関係
+- has_many :passive_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
+- has_many :followers, through: :passive_relationships, source: :follower
 
 ## postsテーブル
 
