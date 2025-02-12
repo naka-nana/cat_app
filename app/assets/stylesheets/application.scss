@@ -104,3 +104,44 @@
 .delete-comment-button:hover {
   background-color: #c0392b;
 }
+.comment-actions-wrapper {
+  position: relative;
+  display: inline-block;
+  color: #444;
+}
+
+.dropdown-icon {
+  width: 20px;
+  height: 20px;
+  background-color: #d3902c;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  white-space: nowrap; /* 横並びで要素が折り返されないようにする */
+  top: 0;
+  left: 300%;
+  background-color: #ebeaea;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  color: #fff;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-menu.show {
+  display: block;
+}

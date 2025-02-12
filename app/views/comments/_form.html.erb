@@ -14,6 +14,6 @@
     <%= f.text_area :content, rows: 3 %>
   </div>
   <div>
-    <%= f.submit "コメントする", class: "comment-submit-button" %>
+    <%= f.submit comment.new_record? ? "コメントする" : "更新する", class: "comment-submit-button" %>
   </div>
 <% end %>

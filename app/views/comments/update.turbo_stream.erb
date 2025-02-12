@@ -1,0 +1,9 @@
+<%= form_with(model: [@post, @comment], local: true) do |f| %>
+  <div>
+    <%= f.label :content, "コメント:" %>
+    <%= f.text_area :content, rows: 3 %>
+  </div>
+  <div>
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>

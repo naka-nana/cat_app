@@ -38,26 +38,21 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
     respond_to do |format|
-      format.turbo_stream
-      format.html # フォールバック用
+      format.html # 通常のリクエストに対応
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("comment_#{@comment.id}", partial: 'comments/form',
+                                                                            locals: { comment: @comment })
+      end
     end
   end
 
   def update
     if @comment.update(comment_params)
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to @post, notice: 'コメントが編集されました。' }
-      end
+      redirect_to post_path(@post), notice: 'コメントが更新されました。'
     else
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("comment_#{@comment.id}", partial: 'comments/form',
-                                                                              locals: { comment: @comment })
-        end
-        format.html { render :edit, alert: '編集に失敗しました。' }
-      end
+      render :edit, status: :unprocessable_entity
     end
   end
 
