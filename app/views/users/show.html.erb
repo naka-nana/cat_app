@@ -1,0 +1,5 @@
+<h1><%= @user.nickname %> さんのプロフィール</h1>
+<%= render "users/follow_button", user: @user %>
+
+<p>フォロー中: <%= @user.following.count %></p>
+<p>フォロワー: <%= @user.followers.count %></p>

@@ -13,7 +13,12 @@ Rails.application.routes.draw do
     member do
       get 'mypage', to: 'cats#index', as: :mypage
     end
-
+    member do
+      get :followers, :following
+    end
+  
+  
+    resources :relationships, only: [:create, :destroy]
     resources :cats, only: [:new, :create, :show, :edit, :update, :destroy] do
       
       get 'diagnosis/question/:question_number', to: 'diagnosis#question', as: :question_diagnosis

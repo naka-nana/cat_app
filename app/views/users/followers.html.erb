@@ -1,0 +1,4 @@
+<h2>フォロワーのユーザー</h2>
+<% @user.followers.each do |user| %>
+  <p><%= link_to user.nickname, user_path(user) %></p>
+<% end %>
