@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_post
-  before_action :set_comment, only: [:destroy]
+  before_action :set_comment, only: [:destroy, :update, :destroy]
 
   def create
     @comment = @post.comments.new(comment_params)
@@ -34,6 +34,25 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to @post, alert: '他のユーザーのコメントは削除できません。' }
       end
+    end
+  end
+
+  def edit
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.html # 通常のリクエストに対応
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("comment_#{@comment.id}", partial: 'comments/form',
+                                                                            locals: { comment: @comment })
+      end
+    end
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to post_path(@post), notice: 'コメントが更新されました。'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

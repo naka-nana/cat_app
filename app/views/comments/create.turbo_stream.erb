@@ -1,6 +1,6 @@
 <turbo-stream action="append" target="comments-section">
   <template>
-  <%= render "comments/comment", comment: @comment %>
+    <%= render partial: "comments/comment", locals: { comment: @comment }, formats: :html %>
   </template>
 </turbo-stream>
 
@@ -15,5 +15,17 @@
         <%= f.submit "コメントする", class: "comment-submit-button" %>
       </div>
     <% end %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="append" target="comments-section">
+  <template>
+    <%= render partial: "comments/comment", locals: { comment: @comment }, formats: [:html] %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="after" target="comments-section">
+  <template>
+    <script>setupDropdownListeners();</script>
   </template>
 </turbo-stream>
