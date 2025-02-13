@@ -39,9 +39,11 @@ header.header h1 a {
 header.header .user_nav {
   display: flex;
   gap: 10px;
+  align-items: center; /* 縦位置を揃える */
 }
 
-header.header .user_nav a {
+header.header .user_nav a,
+header.header .user_nav button {
   text-decoration: none;
   color: #c55d13;
   border: 3px solid #c55d13;
@@ -50,9 +52,15 @@ header.header .user_nav a {
   font-size: 14px;
   font-weight: bold;
   white-space: nowrap;
+  background: none;
+  cursor: pointer;
+  display: inline-block; /* `button` を `a` に合わせる */
+  height: 30px; /* 高さを統一 */
+  line-height: 24px; /* テキスト位置を調整 */
 }
 
-header.header .user_nav a:hover {
+header.header .user_nav a:hover,
+header.header .user_nav button:hover {
   background-color: #c55d13;
   color: #fff;
 }

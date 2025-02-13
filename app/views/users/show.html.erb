@@ -13,4 +13,22 @@
       <span id="following-count-number">フォロー数:<%= @user.following.count %></span>
     </div>
   </div>
+  <!-- ねこの一覧 -->
+  <h2>🐾 飼っているねこ</h2>
+  <div class="cat-thumbnails">
+    
+      <% @user.cats.each do |cat| %>
+        <div class="thumbnail">
+        <% if cat.image.attached? %>
+          <%= link_to image_tag(cat.image.variant(resize: "100x100"), class: "thumbnail-img"), user_cat_path(@user, cat) %>
+          <p><%= cat.name %> <% if cat.diagnosis_result.present? %>（げぼく度: <%= cat.diagnosis_result[0] %>）<% end %></p>
+        </div>
+        <% end %>
+      <% end %>
+    
+  </div>
+  <!-- 投稿一覧に戻る -->
+  <div class="back-link">
+    <%= link_to "⬅ 投稿一覧に戻る", posts_path, class: "profile-link" %>
+  </div>
 </div>
