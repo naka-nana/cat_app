@@ -164,6 +164,7 @@
 .follow-container {
   display: flex;
   align-items: center;
+  justify-content: flex-end; /* 👈 右寄せ */
   gap: 10px; /* 要素の間隔 */
   max-width: 960px;
   margin: 80px auto 20px;
