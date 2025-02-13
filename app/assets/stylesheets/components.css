@@ -165,6 +165,12 @@
   display: flex;
   align-items: center;
   gap: 10px; /* 要素の間隔 */
+  max-width: 960px;
+  margin: 80px auto 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .follow-button {
@@ -183,7 +189,7 @@
 }
 
 .follow-button i {
-  font-size: 18px;
+  font-size: 24px;
   color: #3498db; /* 青色 */
 }
 
@@ -202,6 +208,6 @@
 }
 
 .follow-counts span {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
 }
