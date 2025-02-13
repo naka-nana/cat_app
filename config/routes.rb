@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   
   
-    resources :relationships, only: [:create, :destroy]
+   
     resources :cats, only: [:new, :create, :show, :edit, :update, :destroy] do
       
       get 'diagnosis/question/:question_number', to: 'diagnosis#question', as: :question_diagnosis
@@ -26,4 +26,5 @@ Rails.application.routes.draw do
       get 'diagnosis/result', to: 'diagnosis#result', as: :result_diagnosis
     end
   end
+  resources :relationships, only: [:create, :destroy]
 end

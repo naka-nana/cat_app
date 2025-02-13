@@ -6,7 +6,7 @@ ruby "3.2.2"
 gem "rails", "~> 7.1.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+
 
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
@@ -76,4 +76,5 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'sassc-rails'
 gem 'font-awesome-sass', '~> 6.0'
-gem 'sprockets', '~> 3.7'
+gem 'sprockets-rails', '>= 3.5'
+gem 'sprockets', '>= 4.0'

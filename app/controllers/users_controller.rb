@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:mypage]
+  def show
+    @user = User.find(params[:id])
+  end
 
   def ensure_correct_user
     return unless current_user != User.find(params[:id])

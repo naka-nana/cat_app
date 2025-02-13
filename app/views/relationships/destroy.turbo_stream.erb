@@ -1,5 +1,21 @@
 <turbo-stream action="replace" target="follow-button">
   <template>
-    <%= render "users/follow_button", user: @user %>
+    <% if @user.present? %>
+     <%= render "users/follow_button" %>
+    <% else %>
+      <div>ユーザー情報が見つかりません。</div>
+    <% end %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="replace" target="followers-count-number">
+  <template>
+    <span id="followers-count-number">フォロワー数:<%= @user.followers.count %></span>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="replace" target="following-count-number">
+  <template>
+    <span id="following-count-number"><%= @user.following.count %></span>
   </template>
 </turbo-stream>

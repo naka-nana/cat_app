@@ -145,3 +145,12 @@
 .dropdown-menu.show {
   display: block;
 }
+
+.author-link {
+  text-decoration: none; /* 下線を消す */
+  color: inherit; /* 親の色を引き継ぐ */
+}
+
+.author-link:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}

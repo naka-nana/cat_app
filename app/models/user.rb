@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   # ユーザーをフォローするメソッド
   def follow(user)
-    following << user unless self == user
+    active_relationships.find_or_create_by(following_id: user.id)
   end
 
   # ユーザーのフォローを解除するメソッド
