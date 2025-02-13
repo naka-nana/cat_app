@@ -14,7 +14,7 @@
 
         <!-- 投稿者と紐づいているねこを横並びにする -->
         <div class="post-author-cat">
-          <p class="post-author">投稿者: <%= post.user.nickname %></p>
+          投稿者: <%= link_to post.user.nickname, user_path(post.user), class: "author-link" %>
           <% if post.cats.any? %>
             <p class="post-cats">🐱 紐づいているねこ:
               <% post.cats.each do |cat| %>

@@ -86,10 +86,12 @@ rails server
 - has_many :posts
 - has_many :likes
 - has_many :comments
-- has_many :follows, foreign_key: :follower_id
-- has_many :followees, through: :follows, source: :followee
-- has_many :reverse_follows, class_name: "Follow", foreign_key: :followee_id
-- has_many :followers, through: :reverse_follows, source: :follower
+- has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+- has_many :following, through: :active_relationships, source: :following
+
+  # フォローされる側の関係
+- has_many :passive_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
+- has_many :followers, through: :passive_relationships, source: :follower
 
 ## postsテーブル
 
@@ -153,18 +155,18 @@ rails server
 - belongs_to :user
 - belongs_to :post
 
-## followsテーブル
+## relationshipsテーブル
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
 | follower_id| bigint     | null: false, foreign_key: true |
-| followee_id| bigint     | null: false, foreign_key: true |
+| following_id| bigint     | null: false, foreign_key: true |
 | created_at | datetime   |	null: false                    |
 | updated_at | datetime   |	null: false                    |
 
 ### Association
 - belongs_to :follower, class_name: "User"
-- belongs_to :followee, class_name: "User"
+- belongs_to :following, class_name: "User"
 
 ## resultsテーブル
 
