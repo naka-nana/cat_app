@@ -96,3 +96,112 @@
 .show-button-delete:hover {
   background-color: #c82333;
 }
+
+.delete-comment-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.delete-comment-button:hover {
+  background-color: #c0392b;
+}
+.comment-actions-wrapper {
+  position: relative;
+  display: inline-block;
+  color: #444;
+}
+
+.dropdown-icon {
+  width: 20px;
+  height: 20px;
+  background-color: #d3902c;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  white-space: nowrap; /* 横並びで要素が折り返されないようにする */
+  top: 0;
+  left: 300%;
+  background-color: #ebeaea;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  color: #fff;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 5px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.author-link {
+  text-decoration: none; /* 下線を消す */
+  color: inherit; /* 親の色を引き継ぐ */
+}
+
+.author-link:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.follow-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 要素の間隔 */
+}
+
+.follow-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.follow-button i {
+  font-size: 18px;
+  color: #3498db; /* 青色 */
+}
+
+.follow-button:hover {
+  background: rgba(52, 152, 219, 0.2); /* ホバー時の背景色 */
+}
+
+.unfollow-button i {
+  color: #e74c3c; /* 赤色 */
+}
+
+.follow-counts {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.follow-counts span {
+  font-size: 14px;
+  font-weight: bold;
+}

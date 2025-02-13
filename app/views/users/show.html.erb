@@ -1,10 +1,10 @@
-<div class="container">
+<div class="follow-container">
     <h1><%= @user.nickname %> さんのプロフィール</h1>
 
     <turbo-frame id="follow-button">
       <%= render "users/follow_button", user: @user %>
     </turbo-frame>
-
+  <div class="follow-counts">
     <div id="followers-count">
       <span id="followers-count-number">フォロワー数:<%= @user.followers.count %></span>
     </div>
@@ -12,4 +12,5 @@
     <div id="following-count">
       <span id="following-count-number">フォロー数:<%= @user.following.count %></span>
     </div>
+  </div>
 </div>
