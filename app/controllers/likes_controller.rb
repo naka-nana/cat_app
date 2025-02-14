@@ -2,40 +2,29 @@ class LikesController < ApplicationController
   before_action :set_post
 
   def create
-    if @post.liked_users.include?(current_user)
-      respond_to do |format|
-        format.html { redirect_to posts_path, notice: 'すでにいいねしています。' }
-        format.js { render js: "alert('すでにいいねしています。');" }
-      end
-      return
-    end
+    return if already_liked?
 
-    # 新しいいいねの作成
-    if @post.likes.create(user: current_user)
-      respond_to do |format|
-        format.html { redirect_to posts_path, notice: 'いいねしました！' }
-        format.js
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to posts_path, alert: 'いいねに失敗しました。' }
-        format.js { render js: "alert('いいねに失敗しました。');" }
+    @post.likes.create(user: current_user)
+    respond_to do |format|
+      format.html { redirect_to request.referer || posts_path }
+      format.js
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("like_button_#{@post.id}", partial: 'likes/like_button',
+                                                                             locals: { post: @post })
       end
     end
   end
 
   def destroy
-    @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
+    like = @post.likes.find_by(user_id: current_user.id)
+    like&.destroy
 
-    if @like
-      @like.destroy
-      respond_to do |format|
-        format.js
-      end
-    else
-      # エラーの代わりに何もしないか、メッセージを表示するなど
-      respond_to do |format|
-        format.js { render inline: "console.error('Like not found');" }
+    respond_to do |format|
+      format.html { redirect_to request.referer || posts_path }
+      format.js
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("like_button_#{@post.id}", partial: 'likes/like_button',
+                                                                             locals: { post: @post })
       end
     end
   end
@@ -44,5 +33,17 @@ class LikesController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def already_liked?
+    if @post.likes.exists?(user_id: current_user.id)
+      respond_to do |format|
+        format.html { redirect_to request.referer || posts_path, notice: 'すでにいいねしています。' }
+        format.js { render js: "alert('すでにいいねしています。');" }
+        format.turbo_stream
+      end
+      return true
+    end
+    false
   end
 end

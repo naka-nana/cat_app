@@ -1,7 +1,6 @@
-<div class="follow-container">
+<div class="container">
+  <h2><%= @user.nickname %> さんのプロフィール</h2>
   <div class="follows"> 
-      <h2><%= @user.nickname %> さんのプロフィール</h2>
-
       <turbo-frame id="follow-button">
         <%= render "users/follow_button", user: @user %>
       </turbo-frame>
@@ -29,11 +28,41 @@
             <%= image_tag("default_cat.jpg", class: "thumbnail-img", width: 100, height: 100) %>
           <% end %>
         <% end %>
-          <p>・<%= cat.name %> <% if cat.diagnosis_result.present? %>（げぼく度: <%= cat.diagnosis_result[0] %>）<% end %></p>
+          <p>・<%= cat.name %> <% if cat.diagnosis_result.present? %> <%= cat.diagnosis_result[0] %> <% else %>
+          &nbsp;<% end %></p>
         </div>
         <% end %>
   </div>
+  <h2><%= @user.nickname %>さんの投稿一覧</h2>
+      <div class="post-card">
+        <% @user.posts.each do |post| %>
+          <% if post.image.attached? %>
+            <div class="post-image-wrapper">
+              <%= link_to post_path(post) do %>
+                <!-- 画像 -->
+                <div class="image-container">
+                  <%= image_tag(post.image.variant(resize_to_fill: [600, 400]), alt: "投稿画像", class: "post-image-list-show") %>
+                  <div class="overlay">
+                    <h2 class="post-title-show"><%= post.title %></h2> 
+                    <div class="post-meta-show">
+                      <%= render 'posts/like_button', post: post %>
+                      <p class="like-count-show"><%= post.likes.count %> いいね</p>
+                      <p class="comment-count-show">💬 コメント: 
+                        <%= post.comments.count %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              </div>
+            <% end %>
+           
+           
+        <% end %>
+        
+      </div>
   <!-- 投稿一覧に戻る -->
   <div class="back-link">
     <%= link_to "⬅ 投稿一覧に戻る", posts_path, class: "profile-link" %>
   </div>
+</div>
