@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get 'diagnosis', to: 'diagnosis#select_cat', as: :select_diagnosis_cat
     post 'diagnosis/start', to: 'diagnosis#start', as: 'start_diagnosis'
     member do
-      get 'mypage', to: 'cats#index', as: :mypage
+      get 'mypage', to: 'users#mypage'
     end
     member do
       get :followers, :following

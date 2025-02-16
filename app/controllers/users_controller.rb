@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    return unless current_user != User.find(params[:id])
+    user = User.find_by(id: params[:id]) # `find_by` にして、nil の可能性を考慮
+
+    return unless user.nil? || current_user != user
 
     redirect_to root_path, alert: 'アクセス権がありません'
   end

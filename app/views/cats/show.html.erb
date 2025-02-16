@@ -17,12 +17,15 @@
     </div>
     
     <div class="cat-detail-buttons">
-      <%= link_to '編集する', edit_user_cat_path(@user, @cat), class: 'button button-edit' %>
-      <%= link_to '削除する', user_cat_path(@user, @cat), data: { turbo_method: :delete },class: 'button button-delete' %>
+      <% if @user == current_user %>
+        <%= link_to '編集する', edit_user_cat_path(@user, @cat), class: 'button button-edit' %>
+        <%= link_to '削除する', user_cat_path(@user, @cat), data: { turbo_method: :delete }, class: 'button button-delete' %>
+      <% end %>
+
       <% if @user == current_user %>
         <%= link_to '一覧に戻る', mypage_user_path(current_user), class: 'button button-back' %>
       <% else %>
-        <%= link_to '一覧に戻る', posts_path, class: 'button button-back' %>
+       <%= link_to '一覧に戻る', request.referer || posts_path, class: 'button button-back' %>
       <% end %>
     </div>
   </div>

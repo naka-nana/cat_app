@@ -12,12 +12,21 @@ header.header {
   align-items: center;
   justify-content: space-between;
   padding: 0 80px;
+  
 }
 
 header.header h1 a {
   font-size: 24px;
   text-decoration: none;
   color: #333;
+  writing-mode: horizontal-tb; /* 横書きにする */
+  display: inline-block; /* 幅を自動調整 */
+}
+
+h1 {
+  writing-mode: horizontal-tb !important; /* 横書きにする */
+  display: inline-block; /* 幅を自動調整 */
+  white-space: nowrap; /* テキストが折り返されるのを防ぐ */
 }
 
 .header__bar {
@@ -39,9 +48,11 @@ header.header h1 a {
 header.header .user_nav {
   display: flex;
   gap: 10px;
+  align-items: center; /* 縦位置を揃える */
 }
 
-header.header .user_nav a {
+header.header .user_nav a,
+header.header .user_nav button {
   text-decoration: none;
   color: #c55d13;
   border: 3px solid #c55d13;
@@ -50,9 +61,15 @@ header.header .user_nav a {
   font-size: 14px;
   font-weight: bold;
   white-space: nowrap;
+  background: none;
+  cursor: pointer;
+  display: inline-block; /* `button` を `a` に合わせる */
+  height: 30px; /* 高さを統一 */
+  line-height: 24px; /* テキスト位置を調整 */
 }
 
-header.header .user_nav a:hover {
+header.header .user_nav a:hover,
+header.header .user_nav button:hover {
   background-color: #c55d13;
   color: #fff;
 }
@@ -99,4 +116,93 @@ footer {
 .diagnosis-result {
   font-size: 20px;
   margin-left: 10px;
+}
+
+.cat-thumbnails {
+  display: flex;
+  flex-wrap: wrap; /* 横幅を超えたら折り返し */
+  justify-content: center; /* アイコンを中央に寄せる */
+  gap: 10px; /* アイコン同士の間隔 */
+}
+
+/* 🔹 投稿一覧を中央に配置 */
+.post-card-show {
+  display: flex;
+  flex-wrap: wrap;  /* 複数行に折り返し */
+  gap: 20px;  /* 写真同士の間隔を開ける */
+  justify-content: center; /* 🔥 画像を完全中央揃え */
+  align-items: flex-start;
+  width: 100%; /* 🔥 親要素いっぱいに広げる */
+  max-width: 1200px; /* 必要なら幅制限 */
+  margin: 0 auto; /* 🔥 左右中央揃え */
+}
+
+/* 🔹 画像コンテナ（中央揃え） */
+.image-container {
+  position: relative;
+  display: flex; /* 🔥 画像を中央揃え */
+  justify-content: center; 
+  align-items: center;
+  width: 600px; /* 🔥 画像の統一サイズ */
+  height: 400px; /* 🔥 画像の統一サイズ */
+  overflow: hidden; /* 画像がはみ出さないように */
+  border-radius: 10px;
+}
+
+/* 🔹 投稿の外枠 */
+.post-image-wrapper {
+  display: flex;
+  justify-content: center; /* 🔥 画像を中央に */
+  align-items: center;
+  width: 100%;
+  border-radius: 10px; 
+}
+
+/* 🔹 画像 */
+.post-image-list-show {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔥 画像のアスペクト比を崩さず埋める */
+  border-radius: 8px; 
+  position: relative;
+  z-index: 1;
+}
+
+/* 🔹 オーバーレイ（画像の上に情報を配置） */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /* 🔥 中央に配置 */
+  width: 100%;
+  background: rgba(244, 240, 240, 0.6); /* 半透明の黒背景 */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0 0 8px 8px;
+  color: #090909;
+  z-index: 2;
+}
+
+/* 🔹 タイトル */
+.post-title-show {
+  font-size: 18px;
+  margin-left: 40px;
+  flex: 1;
+  color: #090909;
+  text-align: left;
+}
+
+/* 🔹 いいね＆コメント */
+.post-meta-show {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+}
+
+.like-count-show, .comment-count-show {
+  font-size: 16px;
+  color: #090909;
 }

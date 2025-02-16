@@ -31,7 +31,7 @@
           <p class="like-count"><%= @post.likes.count %> いいね</p>
     </div>
   <div class="button-group">
-    <%= link_to '一覧に戻る', posts_path, class: 'show-button-back' %>
+    <%= link_to '一覧に戻る', request.referer || posts_path,  class: 'show-button-back' %>
     
     <% if @post.user == current_user %>
       <%= link_to '編集', edit_post_path(@post), class: 'show-button-edit' %>
