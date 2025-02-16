@@ -12,12 +12,21 @@ header.header {
   align-items: center;
   justify-content: space-between;
   padding: 0 80px;
+  
 }
 
 header.header h1 a {
   font-size: 24px;
   text-decoration: none;
   color: #333;
+  writing-mode: horizontal-tb; /* 横書きにする */
+  display: inline-block; /* 幅を自動調整 */
+}
+
+h1 {
+  writing-mode: horizontal-tb !important; /* 横書きにする */
+  display: inline-block; /* 幅を自動調整 */
+  white-space: nowrap; /* テキストが折り返されるのを防ぐ */
 }
 
 .header__bar {
@@ -111,8 +120,9 @@ footer {
 
 .cat-thumbnails {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  flex-wrap: wrap; /* 横幅を超えたら折り返し */
+  justify-content: center; /* アイコンを中央に寄せる */
+  gap: 10px; /* アイコン同士の間隔 */
 }
 
 /* 🔹 投稿一覧を中央に配置 */
@@ -178,7 +188,7 @@ footer {
 /* 🔹 タイトル */
 .post-title-show {
   font-size: 18px;
-  margin: 0;
+  margin-left: 40px;
   flex: 1;
   color: #090909;
   text-align: left;
