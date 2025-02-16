@@ -34,35 +34,35 @@
         <% end %>
   </div>
   <h2><%= @user.nickname %>さんの投稿一覧</h2>
-      <div class="post-card">
-        <% @user.posts.each do |post| %>
-          <% if post.image.attached? %>
-            <div class="post-image-wrapper">
-              <%= link_to post_path(post) do %>
-                <!-- 画像 -->
-                <div class="image-container">
-                  <%= image_tag(post.image.variant(resize_to_fill: [600, 400]), alt: "投稿画像", class: "post-image-list-show") %>
-                  <div class="overlay">
-                    <h2 class="post-title-show"><%= post.title %></h2> 
-                    <div class="post-meta-show">
-                      <%= render 'posts/like_button', post: post %>
-                      <p class="like-count-show"><%= post.likes.count %> いいね</p>
-                      <p class="comment-count-show">💬 コメント: 
-                        <%= post.comments.count %>
-                      </p>
-                    </div>
+  <div class="post-card-show">
+    <% @user.posts.each do |post| %>
+      <% if post.image.attached? %>
+        <div class="post-image-wrapper">
+          <%= link_to post_path(post) do %>
+            <div class="image-container">
+              <!-- 🔹 画像 -->
+              <%= image_tag(post.image.variant(resize_to_limit: [600, 400]), 
+                            alt: "投稿画像", 
+                            class: "post-image-list-show") %>
+              <!-- 🔹 オーバーレイ（タイトル・いいね・コメントを表示） -->
+              <div class="overlay">
+                <h2 class="post-title-show"><%= post.title %></h2> 
+                <div class="post-meta-show">
+                  <div class="like-section">
+                    <%= render 'posts/like_button', post: post %>
+                    <p class="like-count-show"> <%= post.likes.count %> いいね</p>
+                    <p class="comment-count-show">💬 <%= post.comments.count %></p>
                   </div>
                 </div>
-              <% end %>
               </div>
-            <% end %>
-           
-           
-        <% end %>
-        
-      </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
   <!-- 投稿一覧に戻る -->
   <div class="back-link">
-    <%= link_to "⬅ 投稿一覧に戻る", posts_path, class: "profile-link" %>
+    <%= link_to "⬅ 投稿一覧に戻る", posts_path, class: "button-back" %>
   </div>
 </div>

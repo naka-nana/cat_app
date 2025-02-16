@@ -115,45 +115,77 @@ footer {
   gap: 20px;
 }
 
-/* 画像コンテナ */
+/* 🔹 投稿一覧を中央に配置 */
+.post-card-show {
+  display: flex;
+  flex-wrap: wrap;  /* 複数行に折り返し */
+  gap: 20px;  /* 写真同士の間隔を開ける */
+  justify-content: center; /* 🔥 画像を完全中央揃え */
+  align-items: flex-start;
+  width: 100%; /* 🔥 親要素いっぱいに広げる */
+  max-width: 1200px; /* 必要なら幅制限 */
+  margin: 0 auto; /* 🔥 左右中央揃え */
+}
+
+/* 🔹 画像コンテナ（中央揃え） */
 .image-container {
   position: relative;
-  display: inline-block;
+  display: flex; /* 🔥 画像を中央揃え */
+  justify-content: center; 
+  align-items: center;
+  width: 600px; /* 🔥 画像の統一サイズ */
+  height: 400px; /* 🔥 画像の統一サイズ */
+  overflow: hidden; /* 画像がはみ出さないように */
+  border-radius: 10px;
 }
 
-/* 画像 */
+/* 🔹 投稿の外枠 */
+.post-image-wrapper {
+  display: flex;
+  justify-content: center; /* 🔥 画像を中央に */
+  align-items: center;
+  width: 100%;
+  border-radius: 10px; 
+}
+
+/* 🔹 画像 */
 .post-image-list-show {
   width: 100%;
-  display: block;
-  border-radius: 8px;
+  height: 100%;
+  object-fit: cover; /* 🔥 画像のアスペクト比を崩さず埋める */
+  border-radius: 8px; 
+  position: relative;
+  z-index: 1;
 }
 
-/* 🔹オーバーレイ（画像の上に配置する） */
+/* 🔹 オーバーレイ（画像の上に情報を配置） */
 .overlay {
   position: absolute;
-  bottom: 0; /* 画像の下部に配置 */
-  left: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /* 🔥 中央に配置 */
   width: 100%;
-  background: rgba(0, 0, 0, 0.6); /* 半透明の黒背景 */
-  color: white;
-  padding: 8px;
+  background: rgba(244, 240, 240, 0.6); /* 半透明の黒背景 */
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 0 0 8px 8px;
+  color: #090909;
+  z-index: 2;
 }
 
-/* タイトル */
+/* 🔹 タイトル */
 .post-title-show {
-  color: #f5f5f5;
-  font-size: 14px;
+  font-size: 18px;
   margin: 0;
   flex: 1;
+  color: #090909;
+  text-align: left;
 }
 
-/* いいね＆コメント */
+/* 🔹 いいね＆コメント */
 .post-meta-show {
-  color: #f5f5f5;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -161,6 +193,6 @@ footer {
 }
 
 .like-count-show, .comment-count-show {
-  color: #f5f5f5;
-  font-size: 12px;
+  font-size: 16px;
+  color: #090909;
 }
