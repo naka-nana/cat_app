@@ -368,7 +368,7 @@ DEPENDENCIES
   faker
   font-awesome-sass (~> 6.0)
   image_processing (~> 1.2)
-  importmap-rails
+  importmap-rails (~> 2.1)
   jbuilder
   mini_magick
   mysql2 (~> 0.5)

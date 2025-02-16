@@ -15,7 +15,6 @@ gem "mysql2", "~> 0.5"
 gem "puma", ">= 5.0"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -78,3 +77,5 @@ gem 'sassc-rails'
 gem 'font-awesome-sass', '~> 6.0'
 gem 'sprockets-rails', '>= 3.5'
 gem 'sprockets', '>= 4.0'
+
+gem "importmap-rails", "~> 2.1"

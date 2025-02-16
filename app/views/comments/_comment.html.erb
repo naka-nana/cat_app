@@ -1,22 +1,21 @@
-<div id="comment_<%= comment.id %>" class="comment" style="display: flex; justify-content: space-between; align-items: center;">
+<div id="comment_<%= comment.id %>" class="comment" 
+     data-controller="comments-dropdown" 
+     style="display: flex; justify-content: space-between; align-items: center;">
   <div>
     <strong><%= comment.user.nickname %>:</strong>
     <p><%= comment.content %></p>
   </div>
 
   <% if current_user && comment.user_id.to_i == current_user.id.to_i %>
-  <div class="comment-actions-wrapper">
-    <span class="dropdown-icon" id="dropdown-icon-<%= comment.id %>">
-      <%= image_tag 'arrow_top.png', alt: "メニューアイコン" %>
-    </span>
-
-    <div class="dropdown-menu" id="dropdown-menu-<%= comment.id %>">
-      <%= link_to '編集', edit_post_comment_path(comment.post, comment), class: "edit-comment-button" %>
-      <%= link_to '削除', post_comment_path(comment.post, comment), 
-          method: :delete, 
-          data: { turbo_confirm: "本当に削除しますか？" }, 
-          class: "delete-comment-button" %>
+    <div class="comment-actions-wrapper" style="position: relative;">
+      <span class="dropdown-icon" data-action="click->comments-dropdown#toggle">
+        <%= image_tag 'arrow_top.png', alt: "メニューアイコン" %>
+      </span>
+      
+      <div class="dropdown-menu hidden" data-comments-dropdown-target="menu">
+        <%= link_to '編集', edit_post_comment_path(comment.post, comment), class: "edit-comment-button" %>
+        <%= link_to '削除', post_comment_path(comment.post, comment), data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか？" }, class: "delete-comment-button" %>
+      </div>
     </div>
-  </div>
   <% end %>
 </div>
