@@ -1,3 +1,0 @@
-document.querySelectorAll(`#like-<%= @post.id %>`).forEach(element => {
-  element.innerHTML = `<%= j render("likes/like_button", post: @post) %>`;
-});
