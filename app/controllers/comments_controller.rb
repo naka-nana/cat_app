@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
   before_action :set_post
-  before_action :set_comment, only: [:destroy, :update, :destroy]
+  before_action :set_comment, only: [:edit, :update, :destroy]
 
   def create
     @comment = @post.comments.new(comment_params)
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
           render turbo_stream: turbo_stream.replace('comment_form', partial: 'comments/form',
                                                                     locals: { post: @post, comment: @comment })
         end
-        format.html { render 'posts/show', alert: 'コメントの追加に失敗しました。' }
+        format.html { render 'posts/show', status: :unprocessable_entity, alert: 'コメントの追加に失敗しました。' }
       end
     end
   end
