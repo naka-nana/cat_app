@@ -9,8 +9,10 @@ class LikesController < ApplicationController
       format.html { redirect_to request.referer || posts_path }
       format.js
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("like_button_#{@post.id}", partial: 'posts/like_button',
-                                                                             locals: { post: @post })
+        render turbo_stream: [
+          turbo_stream.replace("like_button_#{@post.id}", partial: 'posts/like_button', locals: { post: @post }),
+          turbo_stream.replace("like_count_#{@post.id}", partial: 'posts/like_count', locals: { post: @post })
+        ]
       end
     end
   end
