@@ -3,7 +3,7 @@ class RelationshipsController < ApplicationController
 
   def create
     # どちらのパラメータ形式にも対応（テスト/画面の両方OK）
-    target_id = params.dig(:relationship, :followed_id) || params[:following_id]
+    target_id = params.dig(:relationship, :followed_id) || params[:followed_id]
     @user = User.find(target_id)
 
     # 自己フォローは 403 を返す（テストの期待に一致）

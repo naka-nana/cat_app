@@ -1,17 +1,7 @@
-<turbo-stream action="replace" target="follow-button">
-  <template>
-    <%= render partial: "users/follow_button", locals: { user: current_user } %>
-  </template>
-</turbo-stream>
+<%= turbo_stream.update "follow-button",
+      partial: "users/follow_button",
+      locals: { user: @user } %>
 
-<turbo-stream action="replace" target="followers-count-number">
-  <template>
-    <%= @user.followers.count %>
-  </template>
-</turbo-stream>
+<%= turbo_stream.update "followers-count-number", "フォロワー数:#{@user.followers.count}" %>
 
-<turbo-stream action="replace" target="following-count-number">
-  <template>
-    <%= current_user.following.count %>
-  </template>
-</turbo-stream>
+<%= turbo_stream.update "following-count-number", "フォロー数:#{current_user.following.count}" %>

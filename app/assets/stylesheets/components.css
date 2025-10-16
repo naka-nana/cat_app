@@ -183,7 +183,7 @@
   display: flex;
 }
 
-.follow-button {
+/*.follow-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -196,6 +196,20 @@
   height: 32px;
   border-radius: 50%;
   transition: background 0.3s ease;
+}*/
+
+#follow-button button,
+.follow-btn {
+  display: inline-flex; /* アイコンと文字を横に並べる */
+  align-items: center;
+  gap: 8px;             /* アイコンとの間隔 */
+  white-space: nowrap;  /* ← これで「フォローする」が縦に割れない */
+  padding: 6px 12px;
+  line-height: 1;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
 }
 
 .follow-button i {
