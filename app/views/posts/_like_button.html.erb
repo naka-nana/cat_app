@@ -1,19 +1,21 @@
 <turbo-frame id="like_button_<%= post.id %>">
   <div class="like-button-wrapper">
-    <% if current_user %>
+    <% if current_user && current_user.id != post.user_id %>
       <% if post.likes.exists?(user_id: current_user.id) %>
-        <%= button_to post_like_path(post), method: :delete, remote: true, data: { turbo_method: "delete" }, class: "like-button liked" do %>
+        <%= button_to post_like_path(post), method: :delete, data: { turbo_method: "delete" }, class: "like-button liked" do %>
           <i class="fa-solid fa-cat"></i> いいね解除
-        <% end %>  <!-- ここで閉じる -->
+        <% end %>
       <% else %>
-        <%= button_to post_like_path(post), method: :post, remote: true, data: { turbo_method: "post" }, class: "like-button" do %>
+        <%= button_to post_like_path(post), method: :post, data: { turbo_method: "post" }, class: "like-button" do %>
           <i class="fa-solid fa-cat"></i> いいね
-        <% end %>  <!-- ここで閉じる -->
+        <% end %>
       <% end %>
     <% else %>
       <%= link_to new_user_session_path, class: "like-button login-required" do %>
         <i class="fa-solid fa-cat"></i> ログインしていいね
-      <% end %>  <!-- ここで閉じる -->
+      <% end %>
     <% end %>
   </div>
+
+  <!-- ★ カウントも同じ frame 内に置く（テストが探すクラス名を維持） -->
 </turbo-frame>

@@ -27,8 +27,13 @@
     <% end %>
   </div>
     <div class="like-section">
-          <%= render 'posts/like_button', post: @post %>
-          <p class="like-count"><%= @post.likes.count %> いいね</p>
+      <turbo-frame id="like_button_<%= @post.id %>">
+        <%= render 'posts/like_button', post: @post %>
+      </turbo-frame>
+
+      <div id="like_count_<%= @post.id %>">
+        <%= render 'posts/like_count', post: @post %>
+      </div>
     </div>
   <div class="button-group">
     <%= link_to '一覧に戻る', request.referer || posts_path,  class: 'show-button-back' %>
