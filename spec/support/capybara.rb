@@ -4,8 +4,16 @@ require 'capybara/cuprite'
 Capybara.register_driver :cuprite do |app|
   Capybara::Cuprite::Driver.new(
     app,
-    window_size: [1400, 1400]
-    # browser: :chrome  # ← デフォで通常の Chrome を使います（driver 不要）
+    browser_path: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', # ← このパスを指定
+    headless: true,
+    process_timeout: 60,
+    timeout: 60,
+    window_size: [1280, 800],
+    browser_options: {
+      "no-sandbox": nil,
+      "disable-gpu": nil,
+      "disable-dev-shm-usage": nil
+    }
   )
 end
 

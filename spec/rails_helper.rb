@@ -2,6 +2,17 @@
 require 'spec_helper'
 require 'rack/test'
 require 'capybara/rspec'
+require 'capybara/cuprite'
+Capybara.register_driver(:cuprite) do |app|
+  Capybara::Cuprite::Driver.new(app,
+                                process_timeout: 30, # ← ここを 30秒 に延ばす！
+                                timeout: 30,
+                                window_size: [1400, 1400],
+                                browser_options: { 'no-sandbox': nil, 'disable-gpu': nil })
+end
+Capybara.javascript_driver = :cuprite
+Capybara.default_max_wait_time = 5
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production

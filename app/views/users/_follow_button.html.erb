@@ -1,13 +1,19 @@
-<div id="follow-button">
-  <% if current_user.following?(@user) %>
-    <%= button_to relationship_path(current_user.active_relationships.find_by(following_id: @user.id)),
-                  method: :delete, remote: true, class: "follow-button unfollow-button" do %>
-      <i class="fas fa-user-minus"></i> <%# フォロー解除アイコン %>
-    <% end %>
-  <% else %>
-    <%= button_to relationships_path(following_id: @user.id),
-                  method: :post, remote: true, class: "follow-button" do %>
-      <i class="fas fa-user-plus"></i> <%# フォローアイコン %>
-    <% end %>
+<% if current_user.following.exists?(id: user.id) %>
+  <% rel = current_user.active_relationships.find_by(followed_id: user.id) %>
+  <%= button_to relationship_path(rel),
+                method: :delete,
+                form: { data: { turbo: "true" } },
+                authenticity_token: form_authenticity_token,
+                class: "follow-button unfollow-button" do %>
+    <i class="fas fa-user-minus"></i>フォロー解除
   <% end %>
-</div>
+<% else %>
+  <%= button_to relationships_path,
+                method: :post,
+                params: { relationship: { followed_id: user.id } },  #<!-- ← ここ -->
+                form: { data: { turbo: "true" } },
+                authenticity_token: form_authenticity_token,
+                class: "follow-button" do %>
+    <i class="fas fa-user-plus"></i> フォローする
+  <% end %>
+<% end %>
