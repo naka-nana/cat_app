@@ -1,3 +1,4 @@
+
 <%= turbo_stream.replace "follow-button-#{@user.id}" do %>
   <%= turbo_frame_tag "follow-button-#{@user.id}" do %>
     <%= render "users/follow_button", user: @user %>
@@ -8,3 +9,4 @@
       "フォロワー数:#{@user.followers.reload.size}" %>
 <%= turbo_stream.update "following-count-number",
       "フォロー数:#{@user.following.reload.size}" %>
+

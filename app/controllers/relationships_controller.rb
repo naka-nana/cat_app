@@ -2,7 +2,9 @@ class RelationshipsController < ApplicationController
   before_action :authenticate_user!
 
   def create
+
     @user = User.find(follow_target_id) # フォローされる側
+
 
     # 自己フォロー禁止は「作る前」に弾く
     if current_user.id == @user.id
