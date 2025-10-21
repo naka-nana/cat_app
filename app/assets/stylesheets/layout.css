@@ -140,12 +140,10 @@ footer {
 /* 🔹 画像コンテナ（中央揃え） */
 .image-container {
   position: relative;
-  display: flex; /* 🔥 画像を中央揃え */
-  justify-content: center; 
-  align-items: center;
-  width: 600px; /* 🔥 画像の統一サイズ */
-  height: 400px; /* 🔥 画像の統一サイズ */
-  overflow: hidden; /* 画像がはみ出さないように */
+  aspect-ratio: 3 / 2; /* ✅ 比率を維持しつつ可変サイズに */
+  width: 100%;          /* 画面幅に合わせる */
+  max-width: 600px;     /* 最大サイズ */
+  overflow: hidden;
   border-radius: 10px;
 }
 

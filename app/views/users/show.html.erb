@@ -1,17 +1,19 @@
 <div class="container">
   <h2><%= @user.nickname %> さんのプロフィール</h2>
   <div class="follows"> 
-      <turbo-frame id="follow-button">
-        <%= render "users/follow_button", user: @user %>
-      </turbo-frame>
-    <div class="follow-counts">
-      <div id="followers-count">
-        <span id="followers-count-number">フォロワー数:<%= @user.followers.count %></span>
-      </div>
-
+      <%= turbo_frame_tag "follow-button-#{@user.id}" do %>
+        <% unless current_user == @user %>
+          <%= render "users/follow_button", user: @user %>
+        <% end %>
+      <% end %>
+      <div class="follow-counts">
+        <div id="followers-count">
+          <span id="followers-count-number">フォロワー数:<%= @user.followers.count %></span>
+        </div>
       <div id="following-count">
         <span id="following-count-number">フォロー数:<%= @user.following.count %></span>
       </div>
+     
     </div>
   </div>
   <!-- ねこの一覧 -->
@@ -41,10 +43,11 @@
           <%= link_to post_path(post) do %>
             <div class="image-container">
               <!-- 🔹 画像 -->
-              <%= image_tag(post.image.variant(resize_to_limit: [600, 400]), 
+              <%= image_tag(post.image.variant(resize_to_fill: [600, 400]), 
                             alt: "投稿画像", 
                             class: "post-image-list-show") %>
               <!-- 🔹 オーバーレイ（タイトル・いいね・コメントを表示） -->
+          <% end %>
               <div class="overlay">
                 <h2 class="post-title-show"><%= post.title %></h2> 
                 <div class="post-meta-show">
@@ -58,7 +61,7 @@
             </div>
           <% end %>
         </div>
-      <% end %>
+      
     <% end %>
   </div>
   <!-- 投稿一覧に戻る -->

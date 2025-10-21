@@ -2,47 +2,65 @@ class RelationshipsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    # どちらのパラメータ形式にも対応（テスト/画面の両方OK）
-    target_id = params.dig(:relationship, :followed_id) || params[:followed_id]
-    @user = User.find(target_id)
 
-    # 自己フォローは 403 を返す（テストの期待に一致）
+    @user = User.find(follow_target_id) # フォローされる側
+
+
+    # 自己フォロー禁止は「作る前」に弾く
     if current_user.id == @user.id
-      respond_to do |format|
-        format.html { head :forbidden }
-        format.turbo_stream { head :forbidden }
+      respond_to do |f|
+        f.turbo_stream { head :forbidden }
+        f.html         { head :forbidden }
       end
       return
     end
 
-    # 重複フォローは作らない（冪等）
+    # 冪等に作成（既にあれば何もしない）
     current_user.active_relationships.find_or_create_by!(followed: @user)
 
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_back fallback_location: @user, notice: 'フォローしました' }
+    # 描画前に関連キャッシュを確実にクリア
+    current_user.reload
+    @user.reload
+
+    respond_to do |f|
+      f.turbo_stream
+      f.html { redirect_to @user, notice: 'フォローしました' }
     end
   rescue ActiveRecord::RecordNotFound
-    # 万一パラメータ不正なら 404
-    respond_to do |format|
-      format.html { head :not_found }
-      format.turbo_stream { head :not_found }
+    respond_to do |f|
+      f.turbo_stream { head :not_found }
+      f.html         { head :not_found }
     end
   end
 
   def destroy
-    # 自分が follower の関係だけ削除可能（安全）
-    @relationship = current_user.active_relationships.find(params[:id])
-    @user = @relationship.followed # ← 「following」ではなく「followed」に修正
+    rel   = current_user.active_relationships.find(params[:id]) # 自分がfollowerの関係だけ触れる
+    @user = rel.followed                                        # 相手
+    rel.destroy!
 
-    @relationship.destroy
+    current_user.reload
+    @user.reload
 
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_back fallback_location: @user, notice: 'フォロー解除しました' }
+    respond_to do |f|
+      f.turbo_stream
+      f.html { redirect_to @user, notice: 'フォロー解除しました' }
     end
   rescue ActiveRecord::RecordNotFound
-    flash[:alert] = 'Relationship not found.'
-    redirect_to root_path
+    respond_to do |f|
+      f.turbo_stream { head :not_found }
+      f.html do
+        flash[:alert] = 'Relationship not found.'
+        redirect_to root_path
+      end
+    end
+  end
+
+  private
+
+  # 画面/テストのどちらの形でも拾えるように一箇所で面倒を見る
+  def follow_target_id
+    params.dig(:relationship, :followed_id) ||
+      params[:following_id] ||
+      params[:followed_id]
   end
 end

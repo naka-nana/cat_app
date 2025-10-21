@@ -1,14 +1,20 @@
-<% if current_user.following?(user) %>
-  <%= button_to relationship_path(current_user.active_relationships.find_by(followed_id: user.id)),
+
+<% if current_user.following.exists?(id: user.id) %>
+  <% rel = current_user.active_relationships.find_by(followed_id: user.id) %>
+  <%= button_to relationship_path(rel),
                 method: :delete,
-                form: { data: { turbo_stream: true } },
+                form: { data: { turbo: "true" } },
+                authenticity_token: form_authenticity_token,
                 class: "follow-button unfollow-button" do %>
-    <i class="fas fa-user-minus"></i> フォロー中
+    <i class="fas fa-user-minus"></i>フォロー解除
   <% end %>
 <% else %>
-  <%= button_to relationships_path(followed_id: user.id),
+  <%= button_to relationships_path,
                 method: :post,
-                form: { data: { turbo_stream: true } },
+                params: { relationship: { followed_id: user.id } },  #<!-- ← ここ -->
+                form: { data: { turbo: "true" } },
+                authenticity_token: form_authenticity_token,
+
                 class: "follow-button" do %>
     <i class="fas fa-user-plus"></i> フォローする
   <% end %>
